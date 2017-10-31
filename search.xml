@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[BitMap]]></title>
+    <url>%2F2017%2F10%2F31%2FBitMap%2F</url>
+    <content type="text"><![CDATA[BitMap问题设计多选题的选项问题,一道题有多个选项ABCD,可能有更多如何设计更有效存储识别? 分析选项只有选与不选的区别,而且总的个数固定,而且判定2个结果是否存在(答案是否正确),二进制完全满足条件. 结果单个选项12345A：1 1B: 1 &lt;&lt; 1 2C: 1 &lt;&lt; 2 4D: 1 &lt;&lt; 3 8... 组合选项123AB： 1|2BC: 2|4ABCD: 1|2|4|8 比较答案正确答案 ABC : 1|2|4 --&gt; 7 用户选择 AB : 1|2 --&gt; 3 运算 3!=7 &amp;&amp; 3|7=7 说明部分答对 用户选择 BD : 2|8 –&gt; 10 运算 10!=7 &amp;&amp; 10|7=!7 说明有错误选项 相关知识Java位运算(移位、位与、或、异或、非）]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[InvalidClassException]]></title>
     <url>%2F2017%2F10%2F31%2FInvalidClassException%2F</url>
     <content type="text"><![CDATA[InvalidClassException背景项目使用的SpringBoot架构,使用的是默认的Redis存储登陆信息 过程添加了一个有关于UsUser的接口,需要把当前登录信息返回给前端。 结果访问时InvalidClassException异常12org.springframework.data.redis.serializer.SerializationException: Cannot deserialize; nested exception is org.springframework.core.serializer.support.SerializationFailedException: Failed to deserialize payload. Is the byte array a result of corresponding serialization for DefaultDeserializer?; nested exception is java.io.InvalidClassException: com.usc.core.model.UsUser; local class incompatible: stream classdesc serialVersionUID = -4391106051528831723, local class serialVersionUID = -3047559744731102659 at org.springframework.data.redis.serializer.JdkSerializationRedisSerializer.deserialize(JdkSerializationRedisSerializer.java:82) 思考&amp;总结看到这个的第一反应是有人修改了serialVersionUID,然后发现这个类并没有这个字段.然后联想到这个信息是从redis获取的然后清理了redis中的登陆信息,异常不再出现.最后注意到这个org.springframework.data.redis.serializer.JdkSerializationRedisSerializer.deserialize,已证明联想正确,出现问题到解决5分钟不到. 相关知识serialVersionUID适用于Java的序列化机制。简单来说，Java的序列化机制是通过判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM会把传来的字节流中的serialVersionUID与本地相应实体类的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常，即是InvalidCastException。]]></content>
