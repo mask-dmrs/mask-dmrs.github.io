@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="bitmap问题设计多选题的选项问题,一道题有多个选项ABCD,可能有更多如何设计更有效存储识别? 分析选项只有选与不选的区别,而且总的个数固定,而且判定2个结果是否存在(答案是否正确),二进制完全满足条件. 结果单个选项12345A：1        1B: 1 &amp;lt;&amp;lt; 1   2C: 1 &amp;lt;&amp;lt; 2   4D: 1 &amp;lt;&amp;lt; 3   8... 组合选项123AB：">
+<meta name="description" content="二进制位运算实例问题设计多选题的选项问题,一道题有多个选项ABCD,可能有更多如何设计更有效存储识别? 分析选项只有选与不选的区别,而且总的个数固定,而且判定2个结果是否存在(答案是否正确),二进制完全满足条件. 结果单个选项12345A：1        1B: 1 &amp;lt;&amp;lt; 1   2C: 1 &amp;lt;&amp;lt; 2   4D: 1 &amp;lt;&amp;lt; 3   8... 组合选项123AB">
 <meta property="og:type" content="article">
-<meta property="og:title" content="bitmap">
+<meta property="og:title" content="二进制位运算实例">
 <meta property="og:url" content="https://hellojava.cn/2017/10/31/bitmap/index.html">
 <meta property="og:site_name" content="Masque&#39;s Site">
-<meta property="og:description" content="bitmap问题设计多选题的选项问题,一道题有多个选项ABCD,可能有更多如何设计更有效存储识别? 分析选项只有选与不选的区别,而且总的个数固定,而且判定2个结果是否存在(答案是否正确),二进制完全满足条件. 结果单个选项12345A：1        1B: 1 &amp;lt;&amp;lt; 1   2C: 1 &amp;lt;&amp;lt; 2   4D: 1 &amp;lt;&amp;lt; 3   8... 组合选项123AB：">
+<meta property="og:description" content="二进制位运算实例问题设计多选题的选项问题,一道题有多个选项ABCD,可能有更多如何设计更有效存储识别? 分析选项只有选与不选的区别,而且总的个数固定,而且判定2个结果是否存在(答案是否正确),二进制完全满足条件. 结果单个选项12345A：1        1B: 1 &amp;lt;&amp;lt; 1   2C: 1 &amp;lt;&amp;lt; 2   4D: 1 &amp;lt;&amp;lt; 3   8... 组合选项123AB">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-03T14:16:23.878Z">
+<meta property="og:updated_time" content="2017-11-03T14:20:57.895Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="bitmap">
-<meta name="twitter:description" content="bitmap问题设计多选题的选项问题,一道题有多个选项ABCD,可能有更多如何设计更有效存储识别? 分析选项只有选与不选的区别,而且总的个数固定,而且判定2个结果是否存在(答案是否正确),二进制完全满足条件. 结果单个选项12345A：1        1B: 1 &amp;lt;&amp;lt; 1   2C: 1 &amp;lt;&amp;lt; 2   4D: 1 &amp;lt;&amp;lt; 3   8... 组合选项123AB：">
+<meta name="twitter:title" content="二进制位运算实例">
+<meta name="twitter:description" content="二进制位运算实例问题设计多选题的选项问题,一道题有多个选项ABCD,可能有更多如何设计更有效存储识别? 分析选项只有选与不选的区别,而且总的个数固定,而且判定2个结果是否存在(答案是否正确),二进制完全满足条件. 结果单个选项12345A：1        1B: 1 &amp;lt;&amp;lt; 1   2C: 1 &amp;lt;&amp;lt; 2   4D: 1 &amp;lt;&amp;lt; 3   8... 组合选项123AB">
 
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <title>bitmap | Masque's Site</title>
+  <title>二进制位运算实例 | Masque's Site</title>
   
 
 
@@ -293,7 +293,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">bitmap</h2>
+          <h2 class="post-title" itemprop="name headline">二进制位运算实例</h2>
         
 
         <div class="post-meta">
@@ -346,7 +346,7 @@
       
 
       
-        <h3 id="bitmap"><a href="#bitmap" class="headerlink" title="bitmap"></a>bitmap</h3><h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>设计多选题的选项问题,一道题有多个选项ABCD,可能有更多如何设计更有效存储识别?</p>
+        <h3 id="二进制位运算实例"><a href="#二进制位运算实例" class="headerlink" title="二进制位运算实例"></a>二进制位运算实例</h3><h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>设计多选题的选项问题,一道题有多个选项ABCD,可能有更多如何设计更有效存储识别?</p>
 <h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>选项只有选与不选的区别,而且总的个数固定,而且判定2个结果是否存在(答案是否正确),二进制完全满足条件.</p>
 <h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><h5 id="单个选项"><a href="#单个选项" class="headerlink" title="单个选项"></a>单个选项</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">A：1        1</div><div class="line">B: 1 &lt;&lt; 1   2</div><div class="line">C: 1 &lt;&lt; 2   4</div><div class="line">D: 1 &lt;&lt; 3   8</div><div class="line">...</div></pre></td></tr></table></figure>
 <h5 id="组合选项"><a href="#组合选项" class="headerlink" title="组合选项"></a>组合选项</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">AB：  1|2</div><div class="line">BC:   2|4</div><div class="line">ABCD: 1|2|4|8</div></pre></td></tr></table></figure>
@@ -405,7 +405,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://hellojava.cn/2017/10/31/bitmap/" title="bitmap">https://hellojava.cn/2017/10/31/bitmap/</a>
+    <a href="https://hellojava.cn/2017/10/31/bitmap/" title="二进制位运算实例">https://hellojava.cn/2017/10/31/bitmap/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -609,7 +609,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#bitmap"><span class="nav-number">1.</span> <span class="nav-text">bitmap</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题"><span class="nav-number">1.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析"><span class="nav-number">1.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果"><span class="nav-number">1.3.</span> <span class="nav-text">结果</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#单个选项"><span class="nav-number">1.3.1.</span> <span class="nav-text">单个选项</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#组合选项"><span class="nav-number">1.3.2.</span> <span class="nav-text">组合选项</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#比较答案"><span class="nav-number">1.3.3.</span> <span class="nav-text">比较答案</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相关知识"><span class="nav-number">1.4.</span> <span class="nav-text">相关知识</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#二进制位运算实例"><span class="nav-number">1.</span> <span class="nav-text">二进制位运算实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题"><span class="nav-number">1.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析"><span class="nav-number">1.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果"><span class="nav-number">1.3.</span> <span class="nav-text">结果</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#单个选项"><span class="nav-number">1.3.1.</span> <span class="nav-text">单个选项</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#组合选项"><span class="nav-number">1.3.2.</span> <span class="nav-text">组合选项</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#比较答案"><span class="nav-number">1.3.3.</span> <span class="nav-text">比较答案</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相关知识"><span class="nav-number">1.4.</span> <span class="nav-text">相关知识</span></a></li></ol></li></ol></div>
             
 
           </div>
