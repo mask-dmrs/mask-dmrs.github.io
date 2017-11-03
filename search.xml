@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Bitmap]]></title>
+    <title><![CDATA[bitmap]]></title>
     <url>%2F2017%2F10%2F31%2Fbitmap%2F</url>
-    <content type="text"><![CDATA[BitMap问题设计多选题的选项问题,一道题有多个选项ABCD,可能有更多如何设计更有效存储识别? 分析选项只有选与不选的区别,而且总的个数固定,而且判定2个结果是否存在(答案是否正确),二进制完全满足条件. 结果单个选项12345A：1 1B: 1 &lt;&lt; 1 2C: 1 &lt;&lt; 2 4D: 1 &lt;&lt; 3 8... 组合选项123AB： 1|2BC: 2|4ABCD: 1|2|4|8 比较答案正确答案 ABC : 1|2|4 --&gt; 7 用户选择 AB : 1|2 --&gt; 3 运算 3!=7 &amp;&amp; 3|7=7 说明部分答对 用户选择 BD : 2|8 –&gt; 10 运算 10!=7 &amp;&amp; 10|7=!7 说明有错误选项 相关知识Java位运算(移位、位与、或、异或、非）]]></content>
+    <content type="text"><![CDATA[bitmap问题设计多选题的选项问题,一道题有多个选项ABCD,可能有更多如何设计更有效存储识别? 分析选项只有选与不选的区别,而且总的个数固定,而且判定2个结果是否存在(答案是否正确),二进制完全满足条件. 结果单个选项12345A：1 1B: 1 &lt;&lt; 1 2C: 1 &lt;&lt; 2 4D: 1 &lt;&lt; 3 8... 组合选项123AB： 1|2BC: 2|4ABCD: 1|2|4|8 比较答案正确答案 ABC : 1|2|4 --&gt; 7 用户选择 AB : 1|2 --&gt; 3 运算 3!=7 &amp;&amp; 3|7=7 说明部分答对 用户选择 BD : 2|8 –&gt; 10 运算 10!=7 &amp;&amp; 10|7=!7 说明有错误选项 相关知识Java位运算(移位、位与、或、异或、非）]]></content>
   </entry>
   <entry>
     <title><![CDATA[InvalidClassException]]></title>
