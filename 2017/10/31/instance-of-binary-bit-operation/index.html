@@ -131,7 +131,7 @@
 <meta property="og:site_name" content="Masque&#39;s Site">
 <meta property="og:description" content="二进制位运算实例问题设计多选题的选项问题,一道题有多个选项ABCD,可能有更多如何设计更有效存储识别? 分析选项只有选与不选的区别,而且总的个数固定,而且判定2个结果是否存在(答案是否正确),二进制完全满足条件. 结果单个选项12345A：1        1B: 1 &amp;lt;&amp;lt; 1   2C: 1 &amp;lt;&amp;lt; 2   4D: 1 &amp;lt;&amp;lt; 3   8... 组合选项123AB">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-03T14:57:33.619Z">
+<meta property="og:updated_time" content="2017-11-04T14:44:26.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二进制位运算实例">
 <meta name="twitter:description" content="二进制位运算实例问题设计多选题的选项问题,一道题有多个选项ABCD,可能有更多如何设计更有效存储识别? 分析选项只有选与不选的区别,而且总的个数固定,而且判定2个结果是否存在(答案是否正确),二进制完全满足条件. 结果单个选项12345A：1        1B: 1 &amp;lt;&amp;lt; 1   2C: 1 &amp;lt;&amp;lt; 2   4D: 1 &amp;lt;&amp;lt; 3   8... 组合选项123AB">
@@ -386,8 +386,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-11-03T22:57:33+08:00">
-                2017-11-03
+              <time title="更新于" itemprop="dateModified" datetime="2017-11-04T22:44:26+08:00">
+                2017-11-04
               </time>
             
           </span>
@@ -451,11 +451,11 @@
 <h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>选项只有选与不选的区别,而且总的个数固定,而且判定2个结果是否存在(答案是否正确),二进制完全满足条件.</p>
 <h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><h5 id="单个选项"><a href="#单个选项" class="headerlink" title="单个选项"></a>单个选项</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">A：1        1</div><div class="line">B: 1 &lt;&lt; 1   2</div><div class="line">C: 1 &lt;&lt; 2   4</div><div class="line">D: 1 &lt;&lt; 3   8</div><div class="line">...</div></pre></td></tr></table></figure>
 <h5 id="组合选项"><a href="#组合选项" class="headerlink" title="组合选项"></a>组合选项</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">AB：  1|2</div><div class="line">BC:   2|4</div><div class="line">ABCD: 1|2|4|8</div></pre></td></tr></table></figure>
-<h5 id="比较答案"><a href="#比较答案" class="headerlink" title="比较答案"></a>比较答案</h5><p>正确答案 ABC : <code>1|2|4 --&gt; 7</code> <br></p>
+<h5 id="比较答案"><a href="#比较答案" class="headerlink" title="比较答案"></a>比较答案</h5><p>正确答案 <code>ABC : 1|2|4 --&gt; 7</code> <br></p>
 <hr>
 <p>用户选择 <code>AB  : 1|2 --&gt; 3</code>  <br><br>运算  <code>3!=7 &amp;&amp; 3|7=7</code>  说明部分答对 </p>
 <hr>
-<p>用户选择 BD  : 2|8 –&gt; 10  <br><br>运算  <code>10!=7 &amp;&amp; 10|7=!7</code> 说明有错误选项</p>
+<p>用户选择 <code>BD  : 2|8 --&gt; 10</code>  <br><br>运算  <code>10!=7 &amp;&amp; 10|7=!7</code> 说明有错误选项</p>
 <h4 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h4><p><a href="http://blog.csdn.net/xiaochunyong/article/details/7748713" target="_blank" rel="external">Java位运算(移位、位与、或、异或、非）</a></p>
 
       
