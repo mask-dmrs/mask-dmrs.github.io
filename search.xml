@@ -21,9 +21,9 @@
         <category>其他</category>
       </categories>
       <tags>
+        <tag>转载</tag>
         <tag>生活</tag>
         <tag>房子</tag>
-        <tag>转载</tag>
       </tags>
   </entry>
   <entry>
@@ -34,8 +34,8 @@
         <category>Java相关</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>二进制</tag>
+        <tag>Java</tag>
         <tag>Java基础</tag>
         <tag>位运算</tag>
       </tags>
@@ -74,8 +74,8 @@
         <category>其他</category>
       </categories>
       <tags>
-        <tag>转载</tag>
         <tag>程序员</tag>
+        <tag>转载</tag>
       </tags>
   </entry>
 </search>
