@@ -717,6 +717,14 @@
 
 
 
+(window.gitter = {}).chat = {}).options = {
+    room: 'maskspace/Lobby'
+  };
+$.getScript("https://sidecar.gitter.im/dist/sidecar.v1.js");
+	window.onload=function(){
+		$(".gitter-open-chat-button").show();
+		$(".gitter-open-chat-button").text("聊天室");
+	};
 
   
 
