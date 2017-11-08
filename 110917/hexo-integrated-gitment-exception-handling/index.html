@@ -127,11 +127,11 @@
 <meta name="keywords" content="插件,gitment,Hexo,规范开发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo集成gitment异常处理">
-<meta property="og:url" content="https://dmrs.me/110917/hexo-plug-in-development-is-not-standardized,-resulting-in-integrated-gitment-exception/index.html">
+<meta property="og:url" content="https://dmrs.me/110917/hexo-integrated-gitment-exception-handling/index.html">
 <meta property="og:site_name" content="Mask&#39;s Site">
 <meta property="og:description" content="问题集成Gitment按照官方的文档配置报错Cannot read property &amp;#39;firstChild&amp;#39; of null 查找 通过页面的异常进入js发现是获取某个对象为空gitment-container 讲这个关键词在插件里面搜索发现,这个一个装载留言内容的div,于是在异常的页面查看源码搜索,没有找到这个div. 通过查看源码发现themes\next\layout\_">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-08T16:37:03.955Z">
+<meta property="og:updated_time" content="2017-11-08T16:37:19.849Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo集成gitment异常处理">
 <meta name="twitter:description" content="问题集成Gitment按照官方的文档配置报错Cannot read property &amp;#39;firstChild&amp;#39; of null 查找 通过页面的异常进入js发现是获取某个对象为空gitment-container 讲这个关键词在插件里面搜索发现,这个一个装载留言内容的div,于是在异常的页面查看源码搜索,没有找到这个div. 通过查看源码发现themes\next\layout\_">
@@ -164,7 +164,7 @@
 
 
 
-  <link rel="canonical" href="https://dmrs.me/110917/hexo-plug-in-development-is-not-standardized,-resulting-in-integrated-gitment-exception/"/>
+  <link rel="canonical" href="https://dmrs.me/110917/hexo-integrated-gitment-exception-handling/"/>
 
 
 
@@ -341,7 +341,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dmrs.me/110917/hexo-plug-in-development-is-not-standardized,-resulting-in-integrated-gitment-exception/">
+    <link itemprop="mainEntityOfPage" href="https://dmrs.me/110917/hexo-integrated-gitment-exception-handling/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mask">
@@ -437,7 +437,7 @@
 <li>通过查看源码发现<code>themes\next\layout\_third-party\comments</code>是一个留言的插件集合,包含多种留言插件<code>js</code>文件<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;% include <span class="string">'duoshuo.swig'</span> %&#125;</div><div class="line">&#123;% include <span class="string">'disqus.swig'</span> %&#125;</div><div class="line">&#123;% include <span class="string">'hypercomments.swig'</span> %&#125;</div><div class="line">&#123;% include <span class="string">'youyan.swig'</span> %&#125;</div><div class="line">&#123;% include <span class="string">'livere.swig'</span> %&#125;</div><div class="line">&#123;% include <span class="string">'changyan.swig'</span> %&#125;</div><div class="line">&#123;% include <span class="string">'gitment.swig'</span> %&#125;</div><div class="line">&#123;% include <span class="string">'valine.swig'</span> %&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p><code>themes\next\layout\_partials</code>是留言插件<code>html</code>文件<code>comments.swig</code><br>有一段代码引起我的注意<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;% elseif theme.changyan.appid and theme.changyan.appkey %&#125;</div><div class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"comments"</span> id=<span class="string">"comments"</span>&gt;</div><div class="line">      &lt;div id=<span class="string">"SOHUCS"</span>&gt;&lt;/div&gt;</div><div class="line">    &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">  &#123;% elseif theme.gitment.enable %&#125;</span></div><div class="line"><span class="regexp">    &lt;div class="comments" id="comments"&gt;</span></div><div class="line"><span class="regexp">      &#123;% if theme.gitment.lazy %&#125;</span></div><div class="line"><span class="regexp">        &lt;div onclick="showGitment()" id="gitment-display-button"&gt;&#123;&#123; __('gitmentbutton') &#125;&#125;&lt;/</span>div&gt;</div><div class="line">        &lt;div id=<span class="string">"gitment-container"</span> style=<span class="string">"display:none"</span>&gt;&lt;/div&gt;</div><div class="line">      &#123;% <span class="keyword">else</span> %&#125;</div><div class="line">        &lt;div id=<span class="string">"gitment-container"</span>&gt;&lt;/div&gt;</div><div class="line">      &#123;% endif %&#125;</div><div class="line">    &lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure></p>
+<p><code>themes\next\layout\_partials</code>是留言插件<code>html</code>文件<code>comments.swig</code><br>有一段代码引起我的注意<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;% elseif theme.changyan.appid and theme.changyan.appkey %&#125;</div><div class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"comments"</span> id=<span class="string">"comments"</span>&gt;</div><div class="line">      &lt;div id=<span class="string">"SOHUCS"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">    &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">  &#123;% elseif theme.gitment.enable %&#125;</span></div><div class="line"><span class="regexp">    &lt;div class="comments" id="comments"&gt;</span></div><div class="line"><span class="regexp">      &#123;% if theme.gitment.lazy %&#125;</span></div><div class="line"><span class="regexp">        &lt;div onclick="showGitment()" id="gitment-display-button"&gt;&#123;&#123; __('gitmentbutton') &#125;&#125;&lt;/</span>div&gt;</div><div class="line">        &lt;div id=<span class="string">"gitment-container"</span> style=<span class="string">"display:none"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">      &#123;% <span class="keyword">else</span> %&#125;</div><div class="line">        &lt;div id=<span class="string">"gitment-container"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">      &#123;% endif %&#125;</div><div class="line">    &lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure></p>
 <p>对照<code>themes\next\_config.yml</code>文件<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="attr">changyan:</span></div><div class="line"><span class="attr">  enable:</span> <span class="literal">false</span></div><div class="line"><span class="attr">  appid:</span> <span class="string">XX</span></div><div class="line"><span class="attr">  appkey:</span> <span class="string">XX</span></div><div class="line"><span class="attr">gitment:</span></div><div class="line"><span class="attr">  enable:</span> <span class="literal">true</span></div><div class="line">  <span class="comment"># RECOMMEND, A mint on Gitment, to support count, language and proxy_gateway</span></div><div class="line"><span class="attr">  mint:</span> <span class="literal">false</span></div></pre></td></tr></table></figure></p>
 <p>要命的是之前是用畅言测试过,但是这里不是根据<code>changyan.enable</code>去判断,于是导致<code>ifelse</code>进入了畅言这个留言插件的div判断.</p>
 <h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><blockquote>
@@ -496,7 +496,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://dmrs.me/110917/hexo-plug-in-development-is-not-standardized,-resulting-in-integrated-gitment-exception/" title="Hexo集成gitment异常处理">https://dmrs.me/110917/hexo-plug-in-development-is-not-standardized,-resulting-in-integrated-gitment-exception/</a>
+    <a href="https://dmrs.me/110917/hexo-integrated-gitment-exception-handling/" title="Hexo集成gitment异常处理">https://dmrs.me/110917/hexo-integrated-gitment-exception-handling/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
