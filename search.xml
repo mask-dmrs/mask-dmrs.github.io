@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[APP扫描二维码登陆流程]]></title>
+    <url>%2F111417%2Fap-scan-two-dimensional-code-landing-proces%2F</url>
+    <content type="text"><![CDATA[流程 客户端页面请求二维码(带有客户端标识和操作标识),这个二维码实际上来自安全中心的后台生成.(二维码状态:待扫描),此时信息需要放在redis里面保存起来 客户端页面获取到二维码之后,轮询客户端后台,查看这个标识的状态. 安全中心APP(已登录)扫描客户端前台生成的二维码,然后将识别出来的信息获取后访问安全中心后台,安全中心后台将当前APP用户的唯一标示和当前的二维码信息绑定,回调客户端后台.(二维码状态:已扫描) 安全中心APP上操作是否确认,然后改变当前二维码标示(二维码状态:已同意或已拒绝) 客户端前台轮询到已扫描可以提示用户确认,轮询到已同意可直接系统自动登录(通过绑定的用户唯一标识获取到用户加密的密码,走正常的登录流程,).成功之后注意清空密码信息. 二维码生成工具12345678910&lt;dependency&gt; &lt;groupId&gt;com.google.zxing&lt;/groupId&gt; &lt;artifactId&gt;core&lt;/artifactId&gt; &lt;version&gt;3.0.0&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;com.google.zxing&lt;/groupId&gt; &lt;artifactId&gt;javase&lt;/artifactId&gt; &lt;version&gt;3.0.0&lt;/version&gt;&lt;/dependency&gt;]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>二维码</tag>
+        <tag>登陆</tag>
+        <tag>APP</tag>
+        <tag>流程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hexo集成gitment异常处理]]></title>
     <url>%2F110917%2Fhexo-integrated-gitment-exception-handling%2F</url>
     <content type="text"><![CDATA[问题集成Gitment按照官方的文档配置报错Cannot read property &#39;firstChild&#39; of null 查找 通过页面的异常进入js发现是获取某个对象为空gitment-container 讲这个关键词在插件里面搜索发现,这个一个装载留言内容的div,于是在异常的页面查看源码搜索,没有找到这个div. 通过查看源码发现themes\next\layout\_third-party\comments是一个留言的插件集合,包含多种留言插件js文件12345678&#123;% include 'duoshuo.swig' %&#125;&#123;% include 'disqus.swig' %&#125;&#123;% include 'hypercomments.swig' %&#125;&#123;% include 'youyan.swig' %&#125;&#123;% include 'livere.swig' %&#125;&#123;% include 'changyan.swig' %&#125;&#123;% include 'gitment.swig' %&#125;&#123;% include 'valine.swig' %&#125; themes\next\layout\_partials是留言插件html文件comments.swig有一段代码引起我的注意1234567891011121314&#123;% elseif theme.changyan.appid and theme.changyan.appkey %&#125; &lt;div class="comments" id="comments"&gt; &lt;div id="SOHUCS"&gt;&lt;/div&gt; &lt;/div&gt; &#123;% elseif theme.gitment.enable %&#125; &lt;div class="comments" id="comments"&gt; &#123;% if theme.gitment.lazy %&#125; &lt;div onclick="showGitment()" id="gitment-display-button"&gt;&#123;&#123; __('gitmentbutton') &#125;&#125;&lt;/div&gt; &lt;div id="gitment-container" style="display:none"&gt;&lt;/div&gt; &#123;% else %&#125; &lt;div id="gitment-container"&gt;&lt;/div&gt; &#123;% endif %&#125; &lt;/div&gt; 对照themes\next\_config.yml文件12345678changyan: enable: false appid: XX appkey: XXgitment: enable: true # RECOMMEND, A mint on Gitment, to support count, language and proxy_gateway mint: false 要命的是之前是用畅言测试过,但是这里不是根据changyan.enable去判断,于是导致ifelse进入了畅言这个留言插件的div判断. 解决 清空themes\next\_config.yml文件中的changyan.appid和changyan.appkey,themes\next\layout\_partials\comments.swig文中,theme.changyan.appid and theme.changyan.appkey修改为theme.changyan.enable 总结 规范开发 善于关键词查找分析解决问题]]></content>
@@ -42,7 +56,7 @@
   </entry>
   <entry>
     <title><![CDATA[二进制位运算实例]]></title>
-    <url>%2F103117%2Fbinary-operation-example%2F</url>
+    <url>%2F103117%2Finstance-of-binary-bit-operation%2F</url>
     <content type="text"><![CDATA[二进制位运算实例问题设计多选题的选项问题,一道题有多个选项ABCD,可能有更多如何设计更有效存储识别? 分析选项只有选与不选的区别,而且总的个数固定,而且判定2个结果是否存在(答案是否正确),二进制完全满足条件. 结果单个选项12345A：1 1B: 1 &lt;&lt; 1 2C: 1 &lt;&lt; 2 4D: 1 &lt;&lt; 3 8... 组合选项123AB： 1|2BC: 2|4ABCD: 1|2|4|8 比较答案正确答案 ABC : 1|2|4 --&gt; 7 用户选择 AB : 1|2 --&gt; 3 运算 3!=7 &amp;&amp; 3|7=7 说明部分答对 用户选择 BD : 2|8 --&gt; 10 运算 10!=7 &amp;&amp; 10|7=!7 说明有错误选项 相关知识Java位运算(移位、位与、或、异或、非）]]></content>
       <categories>
         <category>Java相关</category>
