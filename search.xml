@@ -2,10 +2,10 @@
 <search>
   <entry>
     <title><![CDATA[APP扫描二维码登陆流程]]></title>
-    <url>%2F111417%2Fap-scan-two-dimensional-code-landing-proces%2F</url>
+    <url>%2F111417%2Fap-scaning-two-dimensional-code-landing-proces%2F</url>
     <content type="text"><![CDATA[流程 客户端页面请求二维码(带有客户端标识和操作标识),这个二维码实际上来自安全中心的后台生成.(二维码状态:待扫描),此时信息需要放在redis里面保存起来 客户端页面获取到二维码之后,轮询客户端后台,查看这个标识的状态. 安全中心APP(已登录)扫描客户端前台生成的二维码,然后将识别出来的信息获取后访问安全中心后台,安全中心后台将当前APP用户的唯一标示和当前的二维码信息绑定,回调客户端后台.(二维码状态:已扫描) 安全中心APP上操作是否确认,然后改变当前二维码标示(二维码状态:已同意或已拒绝) 客户端前台轮询到已扫描可以提示用户确认,轮询到已同意可直接系统自动登录(通过绑定的用户唯一标识获取到用户加密的密码,走正常的登录流程,).成功之后注意清空密码信息. 二维码生成工具12345678910&lt;dependency&gt; &lt;groupId&gt;com.google.zxing&lt;/groupId&gt; &lt;artifactId&gt;core&lt;/artifactId&gt; &lt;version&gt;3.0.0&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;com.google.zxing&lt;/groupId&gt; &lt;artifactId&gt;javase&lt;/artifactId&gt; &lt;version&gt;3.0.0&lt;/version&gt;&lt;/dependency&gt; 图片由ProcessOn生成]]></content>
       <categories>
-        <category>Hexo</category>
+        <category>Java相关</category>
       </categories>
       <tags>
         <tag>二维码</tag>
