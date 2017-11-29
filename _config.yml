@@ -94,7 +94,7 @@ theme: jekyll-theme-cayman
 deploy:
 - type: git
   repo: https://github.com/mask-dmrs/mask-dmrs.github.io
-  branch: gh-pages
+  branch: master
 - type: git
   repo: http://git.coding.net/Ionia/lonia.git
   branch: master
