@@ -94,7 +94,7 @@ theme: next
 deploy:
 - type: git
   repo: https://github.com/mask-dmrs/mask-dmrs.github.io
-  branch: master
+  branch: gh-pages
 - type: git
   repo: http://git.coding.net/Ionia/lonia.git
   branch: master
