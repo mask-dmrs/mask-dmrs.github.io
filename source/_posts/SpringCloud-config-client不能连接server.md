@@ -1,6 +1,6 @@
 ---
 title: SpringCloud-config client不能连接server
-permalink: springcloud-config-client-is-unable-to-conect-to-server
+permalink: springcloud-config-client-canot-conect-to-server
 tags:
   - Java
   - Spring Boot

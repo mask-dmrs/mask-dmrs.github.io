@@ -3,13 +3,13 @@ title:
 date: 2017-10-22 11:57:52
 ---
 #### 关于本站
-- [码市](https://coding.net/)提供免费空间(Pages服务)
-- [阿里云](https://www.aliyun.com/)提供域名.
-- [七牛云](https://www.qiniu.com/)提供免费存储.
-- [Hexo](https://hexo.io/zh-cn/)提供博客模板以及插件集成.
-- [gitter](https://gitter.im)提供留言功能(需要Github/Twitter账户)
-- [不蒜子](http://ibruce.info/2015/04/04/busuanzi/)提供网站统计功能.
-- [flashlab](https://github.com/flashlab/hexo-generator-search/)提供本地搜索功能.
+- [码市](https://coding.net/?from=dmrs.me)提供免费空间(Pages服务)
+- [阿里云](https://www.aliyun.com/?from=dmrs.me)提供域名.
+- [七牛云](https://www.qiniu.com/?from=dmrs.me)提供免费存储.
+- [Hexo](https://hexo.io/zh-cn/?from=dmrs.me)提供博客模板以及插件集成.
+- [gitter](https://gitter.im?from=dmrs.me)提供留言功能(需要Github/Twitter账户)
+- [不蒜子](http://ibruce.info/2015/04/04/busuanzi/?from=dmrs.me)提供网站统计功能.
+- [flashlab](https://github.com/flashlab/hexo-generator-search/?from=dmrs.me)提供本地搜索功能.
 
 
 ---
@@ -18,8 +18,8 @@ date: 2017-10-22 11:57:52
 - Email：masque.fate@gmail.com
 - QQ：3081927676
 - 微信号：bughope 
-- 原创内容均亲自实践过,若有疏漏或者不恰当之处欢迎[指正](https://gitter.im/maskspace/Lobby).
-- 欢迎给我**[<font color="red">留言</font>](https://gitter.im/maskspace/Lobby)**.
+- 原创内容均亲自实践过,若有疏漏或者不恰当之处欢迎[指正](https://gitter.im/maskspace/Lobby?from=dmrs.me).
+- 欢迎给我**[<font color="red">留言</font>](https://gitter.im/maskspace/Lobby?from=dmrs.me)**.
 
 
 ---

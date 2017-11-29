@@ -67,7 +67,7 @@ time_format: HH:mm:ss
 
 # Pagination
 ## Set per_page to 0 to disable pagination
-per_page: 5
+per_page: 0
 pagination_dir: page
 
 translate_title:
@@ -93,7 +93,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
 - type: git
-  repo: http://github.com/masque-fate/masque-fate.github.io.git
+  repo: https://github.com/mask-dmrs/mask-dmrs.github.io
   branch: master
 - type: git
   repo: http://git.coding.net/Ionia/lonia.git
