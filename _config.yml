@@ -78,7 +78,22 @@ translate_title:
   #is_need_proxy: true     #true | false
   #proxy_url: http://localhost:8123
 
-
+neat_enable: false
+neat_html:
+  enable: true
+  exclude:
+neat_css:
+  enable: true
+  exclude:
+    - '*.min.css'
+neat_js:
+  enable: true
+  mangle: true
+  output:
+  compress:
+  exclude:
+    - '*.min.js'  
+  
 search:
   path: search.xml
   field: post
