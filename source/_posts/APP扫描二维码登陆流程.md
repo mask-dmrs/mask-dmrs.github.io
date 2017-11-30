@@ -9,7 +9,7 @@ categories: Java相关
 permalink: ap-scan-two-dimensional-code-landing-proces
 date: 2017-11-14 20:27:57
 ---
-![image](https://dmrsme.toolbox.xin/20171114/APP%E6%89%AB%E6%8F%8F%E4%BA%8C%E7%BB%B4%E7%A0%81%E7%99%BB%E9%99%86.png)
+![image](https://static.zuul.top/dmrs-me/20171114/APP-scanning-two-dimensional-code-login.png)
 #### 流程
 1. 客户端页面请求二维码(带有客户端标识和操作标识),这个二维码实际上来自安全中心的后台生成.(二维码状态:`待扫描`),此时信息需要放在`redis`里面保存起来
 2. 客户端页面获取到二维码之后,轮询客户端后台,查看这个标识的状态.
