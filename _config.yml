@@ -78,7 +78,7 @@ translate_title:
   #is_need_proxy: true     #true | false
   #proxy_url: http://localhost:8123
 
-neat_enable: true
+neat_enable: false
 neat_html:
   enable: true
   exclude:
