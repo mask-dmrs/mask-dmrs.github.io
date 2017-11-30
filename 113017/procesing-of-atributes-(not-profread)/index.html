@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/dmrs_red_t.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/dmrs_red_t.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="属性,设计," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="属性的处理(未校对) Martin Fowler    fowler@acm.org 几乎你创建的每个对象都需要属性：关于对象的一些声明。一个人可能有一个高度，一个公司可能有一个CEO，一个航班可能有一个航班号。有很多方法来建模属性。在这篇文章中，我将探讨其中一些方法，当你可能想要使用它们。我经常看到图案触及这个主题，但他们通常只涉及部分图片。在这里，我想更广泛地讨论这个问题，以便更好地讨论这些选">
+<meta name="keywords" content="属性,设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="属性的处理(未校对)">
+<meta property="og:url" content="https://dmrs.me/113017/procesing-of-atributes-(not-profread)/index.html">
+<meta property="og:site_name" content="Mask&#39;s Site">
+<meta property="og:description" content="属性的处理(未校对) Martin Fowler    fowler@acm.org 几乎你创建的每个对象都需要属性：关于对象的一些声明。一个人可能有一个高度，一个公司可能有一个CEO，一个航班可能有一个航班号。有很多方法来建模属性。在这篇文章中，我将探讨其中一些方法，当你可能想要使用它们。我经常看到图案触及这个主题，但他们通常只涉及部分图片。在这里，我想更广泛地讨论这个问题，以便更好地讨论这些选">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/3_1.png">
+<meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/5_1.png">
+<meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/7_1.png">
+<meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/8_1.png">
+<meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/9_1.png">
+<meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/10_1.png">
+<meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/12_1.png">
+<meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/13_1.png">
+<meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/14_1.png">
+<meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/15_1.png">
+<meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/16_1.png">
+<meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/17_1.png">
+<meta property="og:updated_time" content="2017-11-30T15:43:22.881Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="属性的处理(未校对)">
+<meta name="twitter:description" content="属性的处理(未校对) Martin Fowler    fowler@acm.org 几乎你创建的每个对象都需要属性：关于对象的一些声明。一个人可能有一个高度，一个公司可能有一个CEO，一个航班可能有一个航班号。有很多方法来建模属性。在这篇文章中，我将探讨其中一些方法，当你可能想要使用它们。我经常看到图案触及这个主题，但他们通常只涉及部分图片。在这里，我想更广泛地讨论这个问题，以便更好地讨论这些选">
+<meta name="twitter:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/3_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: false,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://dmrs.me/113017/procesing-of-atributes-(not-profread)/"/>
+
+
+
+
+
+  <title>属性的处理(未校对) | Mask's Site</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mask's Site</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">简单 × 踏实 × 修养 × 价值</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dmrs.me/113017/procesing-of-atributes-(not-profread)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mask">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://static.zuul.top/dmrs-me/sys/dmrs_red.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mask's Site">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">属性的处理(未校对)</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-30T23:22:20+08:00">
+                2017-11-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/译文/" itemprop="url" rel="index">
+                    <span itemprop="name">译文</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="属性的处理-未校对"><a href="#属性的处理-未校对" class="headerlink" title="属性的处理(未校对)"></a>属性的处理(未校对)</h1><hr>
+<p><em>Martin Fowler</em>   </p><p></p>
+<h2 id="fowler-acm-org"><a href="#fowler-acm-org" class="headerlink" title="fowler@acm.org"></a>fowler@acm.org</h2><ul>
+<li><p>几乎你创建的每个对象都需要属性：关于对象的一些声明。一个人可能有一个高度，一个公司可能有一个CEO，一个航班可能有一个航班号。有很多方法来建模属性。在这篇文章中，我将探讨<br>其中一些方法，当你可能想要使用它们。我经常看到图案触及这个主题，但他们通常只涉及部分图片。在这里，我想更广泛地讨论这个问题，以便更好地讨论这些选项。</p>
+</li>
+<li><p>最常见和最简单的情况是使用固定属性，即只声明类的属性。在绝大多数情况下，你只需要做。固定属性在有大量固定属性时会失败，或者需要频繁更改，可能在运行时。这些力量带领您到各种各样的动态财产。所有动态属性都具有参数化属性的质量，在这里查询需要使用带有参数的查询方法的属性。其中最简单的是灵活的动态属性，其中参数只是一个字符串。这使得定义和使用属性变得容易，但难以控制。如果您需要该控件，则可以使用“定义的动态属性”，其中参数必须是某个类的实例。进一步的控制步骤允许您强有力地键入您的动态属性与类型动态属性。</p>
+</li>
+<li><p>随着您的财产结构变得越来越复杂，您应该考虑将它们设置为“单独属性”，从而使属性成为一个对象。如果你需要多值属性，你可以考虑一个类型化的关系。在这个主题中最复杂的例子是你想要规则来控制什么类型的对象具有什么样的属性 - 这需要动态属性知识水平。</p>
+</li>
+<li><p>另一种属性完全是外部属性（Extrinsic Property），如果你想给一个对象一个属性，但是不改变它的接口来支持它，那么就是你使用的一种模式。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Solution</th>
+<th>Name</th>
+<th>page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> &nbsp;</td>
+<td>给它一个这个事实的特定属性。这将转化为查询方法，并可能是一种编程语言的更新方法.</td>
+<td><a href="#固定属性">固定属性</a></td>
+<td>4</td>
+</tr>
+<tr>
+<td> &nbsp;</td>
+<td>提供可参数化的属性，可以根据参数表示不同的属性</td>
+<td><a href="#动态属性">动态属性</a></td>
+<td>4</td>
+</tr>
+<tr>
+<td> &nbsp;</td>
+<td>提供一个用字符串参数化的属性。声明一个属性只是使用字符串.</td>
+<td>灵活的动态属性</td>
+<td>5</td>
+</tr>
+<tr>
+<td> &nbsp;</td>
+<td>提供用某种类型的实例参数化的属性。要声明属性，请创建该类型的新实例</td>
+<td>定义的动态属性</td>
+<td>7</td>
+</tr>
+<tr>
+<td> &nbsp;</td>
+<td>提供使用某种类型的实例进行参数化的属性。要声明属性，请创建该类型的新实例并指定该属性的值类型.</td>
+<td>类型动态属性</td>
+<td>9</td>
+</tr>
+<tr>
+<td>你如何代表一个事物的事实，并允许事实记录有关的事实</td>
+<td>为每个属性创建一个单独的对象。 关于那个财产的事实可以作为这个财产的属性</td>
+<td>分开的属性</td>
+<td>10</td>
+</tr>
+<tr>
+<td>你如何表示两个对象之间的关系（如何表示多值动态属性？）</td>
+<td>为两个对象之间的每个链接创建一个关系对象。 给关系对象一个类型对象来表示关系的含义。 （类型对象是多值属性的名称。）</td>
+<td>类型关系</td>
+<td>14</td>
+</tr>
+<tr>
+<td>当你使用动态属性时，你如何强制某些类型的对象具有某些属性？</td>
+<td>创建知识级别以包含哪些类型的对象使用哪些类型的属性的规则</td>
+<td>动态财产知识水平</td>
+<td>16</td>
+</tr>
+<tr>
+<td>你如何给一个对象一个属性而不改变它的接口？</td>
+<td>使另一个对象负责知道属性</td>
+<td>外在性质</td>
+<td>18</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="什么是属性"><a href="#什么是属性" class="headerlink" title="什么是属性"></a>什么是属性</h2><ul>
+<li><p>这不是一个愚蠢的问题。当人们围绕“属性”这个词来分支时，他们可能意味着很多不同的东西。对某些属性来说，是一个类的实例变量或数据成员。对于其他人来说，它们就像UML图中的一个盒子一样。所以在我开始这篇文章之前，我必须定义这个词的用法。</p>
+</li>
+<li><p>为了我的目的，一个属性是关于一个可以通过查询方法获得的对象的一些信息。它可能是一个值类型（如Java中的int）或一个类的实例。您可能能够更新该属性，但不一定。您可以在创建对象时设置属性，但不一定。该属性可以作为实例变量或数据成员存储，但不一定是。班级可能会从另一个班级获得价值，或者经过一些进一步的计算。因此，我采用属性的接口视图而不是实现视图。这是我在设计中经常使用的习惯：对于我来说，面向对象的本质是将接口与实现分开，并使接口更加重要。</p>
+</li>
+</ul>
+<hr>
+<h2 id="固定属性"><a href="#固定属性" class="headerlink" title="固定属性"></a><span id="固定属性">固定属性</span></h2><ul>
+<li>固定属性是我们使用的最常见的属性。 固定属性在类型的接口中声明。 它给出了属性的名称和返回类型。 图1显示了使用UML建模的属性，清单1显示了这些属性的查询方法如何在Java中显示。 我已经选择了这个例子来说明这个讨论同样适用于UML属性和UML关联。 它也适用于计算值（年龄）以及那些合理存储的数据（出生日期）。</li>
+</ul>
+<p><img src="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/3_1.png" alt="image"></p>
+<blockquote>
+<p>图1.使用固定属性建模的人员<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> Date <span class="title">getDateOfBirth</span><span class="params">()</span></span>; </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> Quantity <span class="title">getHeight</span><span class="params">()</span></span>; </div><div class="line"><span class="function"><span class="keyword">public</span> Company <span class="title">getEmployer</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDateOfBirth</span> <span class="params">(Date newDateOfBirth)</span></span>; </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEmployer</span> <span class="params">(Company newEmployer)</span></span>;</div></pre></td></tr></table></figure></p>
+<p>列举,图1的<code>java</code>操作</p>
+</blockquote>
+<ul>
+<li><p>查询操作通常遵循一些命名约定。在smalltalk中，您总是在属性名称（dateOfBirth）之后命名查询。 C ++从来没有一个固定的约定，有些人只是在属性后面命名，而另一些人则使用“get”约定（getDateOfBirth）。 Java从没有特别的约定开始，但现在大多数人都采用get约定。就我个人而言，当您阅读代码时，我发现“get”令人恼火，所以我宁愿忽略它，但Java风格是使用get，所以现在就使用它。无论您使用的是存储值还是派生值，都应确保遵循相同的约定。人类的客户不应该知道或关心年龄是否存储或派生。</p>
+</li>
+<li><p>修饰符操作的存在取决于您是否希望直接修改值。如果你这样做，那么你会根据一些命名方案，例如setDateOfBirth（Date）提供一个修饰符操作。对于返回值存在不同的约定。你可以返回属性的新值（Date），被修改的对象（Person），或者什么都没有（void）。我更愿意在修饰符上返回void，以帮助明确修饰符和查询之间的区别。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> 固定属性</div><div class="line">你如何代表一个对象的事实？给它一个这个事实的特定属性。 这将转化为查询方法，并可能是一种编程语言的更新方法。 </div><div class="line"> √ 清晰的界面</div><div class="line"> × 只能在设计时添加属性</div></pre></td></tr></table></figure>
+<ul>
+<li><p>您可能希望为属性的构造函数提供参数。通常，您要在构造函数中设置足够的属性，以便构建格式良好的类。</p>
+</li>
+<li><p>不想直接修改的属性不应该有修饰符操作。如果您只希望从出生之日起计算，那么年龄属性可能就是这种情况。对于一个不可改变的属性也是如此：一个在类的生命周期中不会改变的属性。当你想使财产不可改变时，请记住考虑到人为错误。虽然出生日期对于现实世界中的人类来说是不可改变的属性，但是您可能会在输入到计算机系统时出现错误，从而使其变得可变。软件常常模拟我们所知道的世界，而不是世界本身。</p>
+</li>
+<li><p>固定属性是迄今为止您将遇到的最常见的属性形式。他们这样做是有原因的：他们使用简单方便。您应该使用固定属性作为表示属性的第一个也是最常见的选择。在本文中，我将给出许多固定属性的替代方案。在某些情况下，这些替代品更好，但大多数情况下不是。请记住，当我们经历的选择。我99％的时间使用固定的属性。其他品种更为复杂，这就是为什么我把这篇论文的大部分花费在他们身上 - 也是为什么我不愿意使用它们！</p>
+</li>
+</ul>
+<h2 id="动态属性"><a href="#动态属性" class="headerlink" title="动态属性"></a><span id="动态属性">动态属性</span></h2><ul>
+<li><p>固定属性的关键在于您在设计时修复了这些属性，并且所有实例在运行时都必须遵循该决定。 对于一些问题，这是一个尴尬的限制。 想象一下，我们正在建立一个复杂的联络系统。 有一些东西是固定的：家庭住址，家庭和工作电话，电子邮件。 但他们是各种各样的小变化。 对于需要记录父母地址的人，另一个人有白天工作和晚上工作号码。 事先很难预测所有这些事情，每次更改系统时都必须经过编译，测试和分发。 要处理这个问题，你需要使用动态属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">动态属性</div><div class="line">你如何代表一个对象的事实？</div><div class="line">提供可参数化的属性，可以根据参数表示不同的属性 </div><div class="line">√ 可以在运行时添加属性</div><div class="line">× 不清楚的界面</div></pre></td></tr></table></figure>
+</li>
+<li><p>动态属性有多种变化，每种变化都会在灵活性和安全性之间做出不同的折衷。 最简单的方法是灵活的动态属性。 这种模式的本质是为键值为简单值的人（通常是字符串）添加一个合格的关联（参见图2和清单2）。 如果您想为某人Kent添加休假地址，则只需使用清单3中的代码即可。您不需要重新编译人员类。 你甚至可以建立一个图形用户界面（GUI）或者文件读取器来添加属性，而不用重新编译客户端。<br><img src="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/5_1.png" alt="image"></p>
+<blockquote>
+<p>图2.使用动态属性建模的人员</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">getValueOf</span><span class="params">(String key)</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setValueOf</span><span class="params">(String key, Object value)</span></span>;</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>列举2,图2的<code>java</code>方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">kent.setValueOf(“VacationAddress”, anAddress);</div><div class="line">Address kentVactation = (Address) kent.getValueOf(“VacationAddress”)</div></pre></td></tr></table></figure></p>
+<p>列举3,使用动态属性<br>这样说，你可能想知道为什么有人会使用固定的属性，因为动态的像这样的属性给了你更多的灵活性。当然有一个成本，它在于软件各部分之间依赖关系的清晰度降低。这一切都非常好好给一个人增加一个度假地址属性，但是你怎么知道把它重新取回呢？有了固定的属性，你可以看看人的界面，看看属性。该编译器可以检查不要求对象做不理解的事情。 用一个动态属性，你不能做任何设计时检查。此外的界面人很难看。不只是你看Person的声明接口 -你也必须找到不会出现在类接口中的动态属性。你必须找到那些设置属性的代码部分（通常不会在Person类中）挖出来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">灵活的动态属性</div><div class="line">你如何代表一个对象的事实？</div><div class="line">提供一个用字符串参数化的属性。 只声明一个属性使用字符串。</div></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li><p>不仅是财产很难找到，它也创造了噩梦的依赖。随着固定属性的客户端代码有一个依赖于人类 - 一个依赖是很容易的不要跟丢。如果你改变属性的名字，编译器会让你知道，并告诉你需要改变什么代码才能解决问题。但灵活的动态属性创建一个依赖于任意一段代码。它可能是属于一个类的代码甚至不能被客户看到。如果有人更改密钥字符串会发生什么？什么如果有人改变他们把键入字符串的对象的类型会发生？不只是可以的编译器无助于你，你甚至不知道从哪里开始寻找潜力变化。</p>
+</li>
+<li><p>灵活的动态属性在最极端的情况下显示了这个问题。该物业可能是Person的任何客户在设计时创建。如果另一个人的客户使用同样的东西©Martin Fowler 1997 6属性你有一个很难找到的两个类之间的依赖关系。此外<br>属性可以在运行时通过读取文件或通过GUI添加。不可能发现，即使在运行时，一个人的法律动态属性是什么。诚然，你可以问一个人，如果它有一个度假地址的财产-但如果没有一个这是否意味着这一点人没有假期地址，或者是否意味着没有这样的财产度假地址？如果现在没有这样的财产，那并不代表就没有这个财产几秒钟后。</p>
+</li>
+<li>灵活动态特性的另一个关键缺点是很难替代它们进行操作。封装的一个关键优势是使用属性的客户端无法分辨它是作为对象数据的一部分存储的，还是通过方法来计算的。这是一个对象方法非常重要的一部分。它可以让你不只是一个普通的界面目的，而且在客户不知情的情况下改变主意。在……的存在下子类型，你甚至可以有一个超类型存储属性和子类计算或副反之亦然。但是，如果要使用动态属性，则只能更改存储的数据一个计算就是在通用访问器中为动态属性设置一个特定的陷阱清单4中的代码。这个代码可能很脆弱，难以维护。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">getValueOf</span> <span class="params">(String key)</span> </span>&#123;</div><div class="line"><span class="keyword">if</span> (key = “vacationAddress”) <span class="keyword">return</span> calculatedVacationAddress();</div><div class="line"><span class="keyword">if</span> (key = “vacationPhone”) <span class="keyword">return</span> getVacationPhone();</div><div class="line"><span class="comment">// else return stored value…</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>列举4,用操作替换动态属性</p>
+</blockquote>
+<ul>
+<li><p>其他形式的动态属性可以帮助您解决其中一些问题，但不是全部。该动态属性的根本缺点是你失去了清晰的界面和所有的设计时间检查。动态属性的不同方法给你不同的能力运行时检查。如果你需要动态属性，并且当然有确定的情况你这样做，那么你只需要放弃设计时间检查和明确的设计时间接口。唯一的问题是如何明确界面和多少检查你可以做的在运行时。使用灵活的动态属性，你也不会得到任何一个。</p>
+</li>
+<li><p>你经常在数据库中发现动态属性，因为改变它通常是一个痛苦数据库模式，特别是如果有大量的数据迁移。分布式的接口例如在CORBA中的组件也经常因为相似的原因而使用动态属性。那里是很多使用界面的远程客户，所以你不愿意改变它。在这两个这些情况并不是编译时和运行时间的区别，而是一个区别设计时间和生产之间的区别。</p>
+</li>
+<li><p>如果你正在做的是通过GUI显示和更新信息，而代码永远不会对键进行固定的引用（即，你永远不会看到像清单3那样的代码），那么你很漂亮安全，灵活的动态属性。这是因为你没有建立一个讨厌的依赖以一些任意字符串作为关键字。否则，你应该考虑其他方法之一动态属性。</p>
+</li>
+<li><p>更多运行时检查的第一步是定义的动态属性。钥匙定义相对于灵活的动态属性之间的区别是所使用的关键动态属性不再是一些任意的字符串，而是现在某个类的一个实例（图3）。</p>
+</li>
+</ul>
+<p><img src="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/7_1.png" alt="image"></p>
+<blockquote>
+<p>图3.定义的动态属性</p>
+</blockquote>
+<p>-在它的表面上使用定义的动态属性并没有太大的改变。确实是代码接口几乎相同（清单5和清单6）。但现在不再选择密钥完全是任意的，它受到接触类型的限制。当然这仍然允许你在运行时添加属性-只需创建一个新的联系人类型。但现在至少有某处可以找到一个潜在的钥匙清单，而不必拖网程序文本。在设计时添加的任何密钥都可以在加载程序中收集接触式类。 您可以轻松地提供服务，以在运行时查找合法的密钥。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">getValueOf</span><span class="params">(ContactType key)</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setValueOf</span><span class="params">(ContactType key, Object value)</span></span>;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>列举5, 图3的Java接口<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContactType</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Enumeration <span class="title">instances</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">hasInstanceNamed</span><span class="params">(String name)</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ContactType <span class="title">get</span><span class="params">(String name)</span></span>;</div></pre></td></tr></table></figure></p>
+<p>列举6,为定义的属性类型提供的服务</p>
+</blockquote>
+<ul>
+<li>特别是你现在可以设置一些检查，以防止由于某人要求的错误动态属性不存在，如清单7所示。我抛出一个未经检查的异常这里是因为我认为get（）的前提是客户端提供了一个合法的名字对于联系人类型。客户可以通过使用来始终履行这个责任hasInstanceNamed（），但大多数时候客户端软件会挂在联系人类型上对象，而不是字符串。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">定义的动态属性</div><div class="line">你如何代表一个对象的事实？</div><div class="line">提供用某种类型的实例参数化的属性。 至声明一个属性创建一个新类型的实例</div></pre></td></tr></table></figure>
+<ul>
+<li>通常，联系人类型将保存在字典中，通常由字符串索引。这个字典可能是一个静态的联系人类型的字段，但是我更愿意把它作为注册服务器上的字段。删除联系人类型仍然具有尴尬的后果。在java中的动态属性仍然会出现在那些拥有它们的物体上，除非你写了一些复杂的东西清理代码。我通常会规定永远不要删除DefinedDynamic的键属性。 如果你想使用一个新的名字，你可以很容易地通过给它一个别名的联系人类型名字，但多次放入定义字典中。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContactType</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ContactType <span class="title">get</span><span class="params">(String name)</span> </span>&#123;</div><div class="line"><span class="keyword">if</span> (! hasInstanceNamed (name)) <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(“No</div><div class="line">such contact type);</div><div class="line"><span class="comment">// return the contact type</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// use with</span></div><div class="line">Address kentVactation =</div><div class="line">(Address) kent.getValueOf(ContactType.get(“VacationAddress”));</div></pre></td></tr></table></figure>
+<blockquote>
+<p>列举7, 检查使用合法合同类型</p>
+</blockquote>
+<ul>
+<li>在这一点上，你可能想知道这与概念建模有什么关系，毕竟我写了很多代码并讨论设计的权衡。这是一个重要的概念上的问题，因为你所做的概念选择会影响执行选项你有。如果你选择在你的概念模型中使用灵活的动态属性，你是使你很难在你的定义中使用定义的动态属性或固定属性实现。你做概念模型的原因之一是探索什么是固定的用户的概念有什么变化。如果全面的灵活性是我唯一的目标，那么我会总是使用图4.通过这个，我可以模拟世界上的任何情况。但是这个模型不是很有用。它的无用性来自事实，它不表示什么是固定的。什么时候你正在做一个概念模型，你需要知道你的选择如何影响事物实施-否则你放弃你作为建模者的责任。我经常发现人们发现动态属性，然后想要在任何地方使用它们。灵活性如此之大，他们获得了所有的可扩展性。是的，有时候你<br>需要动态属性。但永远不会忘记有一个价格。只有当你真的使用它们需要他们。毕竟，如果必须，以后很容易添加它们。</li>
+</ul>
+<p><img src="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/8_1.png" alt="image"></p>
+<blockquote>
+<p>图4.一个可以无用建模任何域的模型</p>
+</blockquote>
+<ul>
+<li>定义的动态属性允许您更多地指出您的属性有。这些属性仍然是无类型的。你不能执行假期的价值图3中的地址是一个地址。 你可以通过使用类型动态来做些什么属性。</li>
+</ul>
+<p><img src="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/9_1.png" alt="image"></p>
+<blockquote>
+<p>图5.为使用限定关联的类型化动态属性建模</p>
+</blockquote>
+<p>-类型化动态属性将类型信息添加到定义的动态属性（图6和6）图5）。这里的联系人类型的实例不只是指出该人是什么合适的人有，他们也表示每个财产的类型。 类型约束的价值，沿线清单9。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">getValueOf</span><span class="params">(ContactType key)</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setValueOf</span><span class="params">(ContactType key, Object value)</span></span>;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContactType</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> Class <span class="title">getValueType</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">ContactType</span> <span class="params">(String name, Class valueType)</span></span>;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>列举8, 键入动态属性的操作</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setValueOf</span><span class="params">(ContactType key, Object value)</span> </span>&#123;</div><div class="line"><span class="keyword">if</span> (! key.getValueType().isInstance(value))</div><div class="line"><span class="keyword">throw</span> IllegalArgumentException (“Incorrect type <span class="keyword">for</span> property”);</div><div class="line"><span class="comment">// set the value</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>列举9, 做类型检查</p>
+</blockquote>
+<ul>
+<li>这样做类型检查可以帮助避免错误，但是仍然不够明确属性。检查是在运行时间，而不是在设计时间，因此没有那么有效。还是比没有检查好，尤其是如果你习惯于强类型的话环境。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">类型动态属性</div><div class="line">你如何代表一个对象的事实？</div><div class="line">提供使用某种类型的实例进行参数化的属性。 声明一个属性创建一个新类型的实例并指定值的类型属性。</div></pre></td></tr></table></figure>
+<ul>
+<li><p>当我们深入研究动态属性时，我们发现了更加丰富的反射的例子当我们获得能够描述的运行时对象时出现的架构模式他们自己。 [POSA]比我打算在这里更详细地讨论反思。</p>
+</li>
+<li><p>动态属性提供反射功能，即使在那些不支持的语言中也是如此反思自己。即使用一种语言，也反映了一些思考<br>的动态属性更专注 - 所以你可以提供一个更易于使用的界面。</p>
+</li>
+<li><p>使用所有这些合格的协会可能会很难遵循。 另一种方式提供类型化的动态属性是使用单独的属性模式。 的本质单独的属性模式是它使属性成为它自己的一个对象（图6和6）清单10）。你可以得到一个人的财产，然后与每个财产得到价值和类型信息。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">分开的属性</div><div class="line">你如何代表一个事物的事实，并允许事实记录这个事实</div><div class="line">为每个属性创建一个单独的对象。 有关该财产的事实可以然后被做成那个对象的属性。</div></pre></td></tr></table></figure>
+<ul>
+<li>独立的属性和合格的关联是两种可供选择的选择动态属性。到目前为止，我已经描述了灵活和定义的动态属性<br>合格的协会，因为合格的协会提供了一个更容易使用的界面。如果您愿意，您可以使用灵活和定义的具有单独属性的动态属性，虽然我不打算在这里进入。当我们谈到类型动态的复杂性时属性和分开的财产风格变得更有优势。</li>
+</ul>
+<p><img src="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/10_1.png" alt="image"></p>
+<blockquote>
+<p>图6.为分类的动态属性建模，使用单独的属性</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> Enumeration <span class="title">getProperties</span><span class="params">()</span></span>;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContactProperty</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">getValue</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> Class <span class="title">getType</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> ContactType <span class="title">getIndex</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>列举10, 使用单独属性的类型化动态属性的操作</p>
+</blockquote>
+<ul>
+<li><p>单独的属性和有限的关联不是相互排斥的。你可以很容易同时提供两个接口。这样你就得到了两者的优点。当然这使得界面更加复杂，所以首先要考虑人的客户需要什么。给他们他们需要的接口，不要让它过于复杂。但如果他们需要两个合格的协会和单独的财产，那么这是一个合理的选择。我会通常总是使用有价值的关联来获得价值，但它可能没有多少意义方式。</p>
+</li>
+<li><p>您也可以在这里考虑接口/实现的差异。在本文中，我想专注于概念-映射到软件界面而不是其界面实现。但值得一提的是，你可以提供一个合格的协会接口，同时在实现中使用单独的对象。你只使用单独的如果一个人的客户端可以获得一个联系人属性对象，则在界面中的属性。通常是这样有助于隐藏单独的属性来简化客户端的接口。</p>
+</li>
+<li><p>独立属性的一大优势是它可以让你放置信息关于财产的财产。这些信息可能包括谁决定的财产，何时确定，等等。 [Fowler AP§3.5]中的观察模式在一定的深度上建立在这个主题上。我在这里描述的很多东西如果你需要单独的属性，观察是值得考虑的。 （我看到了观察模式作为独立属性的使用。）</p>
+</li>
+<li><p>您可能想知道单独的属性（一个模式）与合格的对比关联（一个UML建模结构）。你也可以把有资格的协会想象成一个模式，关联模式。事实上，我在[FowlerAP§15.2]中做了这个。我找到了有助于将建模作为模式来思考，因为这有助于我考虑权衡在使用它们。当你比较它们的东西时，这是特别有用的更清晰的模式，如单独的财产。当然，以模式开始的事情可以被转换成建模结构，特别是如果你使用UML原型。历史悠久映射模式[FowlerAP§15.3]就是一个很好的例子。我代表那个使用“历史”刻板印象。这是一个模式或建模？也许这是一个地板蜡和一个<br>沙漠也打顶了。</p>
+</li>
+</ul>
+<hr>
+<h2 id="具有多值关联的动态属性"><a href="#具有多值关联的动态属性" class="headerlink" title="具有多值关联的动态属性"></a>具有多值关联的动态属性</h2><ul>
+<li>我上面的例子集中在每个密钥都有一个单一值的情况动态属性。但是你也可以有一些情况，其中有多个项目<br>动态属性。与人，你可能会考虑一个多值的朋友财产。有两种方法可以解决这个问题，一个简单而不令人满意，另一个就是这样满足，但（太）复杂。</li>
+</ul>
+<ul>
+<li>简单的方法就是说动态属性的值可以是一个集合。然后我们可以像使用相同接口的其他对象一样操作它（清单11）。这是好，简单，因为我们不必对基本的动态属性模式做任何事情。（这里的例子是一个类型化的动态属性，但它可以和所有的一起工作）但是，这并不令人满意，因为这不是我们想要处理多重价值的方式属性。如果朋友是一个固定的财产，我们会想沿着一个界面清单12.我不喜欢在这种情况下暴露vector。通过这样做，人类失去了当我们添加或移除元素时能够反应。这也消除了我们改变的能力我们正在使用的收集类型。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Person aPerson = <span class="keyword">new</span> Person();</div><div class="line">ContactType friends = <span class="keyword">new</span> ContactType(“Friends”, Class.forName(“Vector”));</div><div class="line">Person martin = <span class="keyword">new</span> Person(“Martin”);</div><div class="line">martin.setValueOf(“Friends”, <span class="keyword">new</span> Vector());</div><div class="line">Person kent = <span class="keyword">new</span> Person(“Kent”);</div><div class="line">martin.getValueOf(“Friends”).addElement(“Kent”);</div><div class="line">Enumeration friends = martin.getValueOf(“Friends”).elements();</div></pre></td></tr></table></figure>
+<blockquote>
+<p>列举11, 在类型化动态属性中使用集合值<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> Enumeration <span class="title">getFriends</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFriend</span><span class="params">(Person arg)</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeFriend</span><span class="params">(Person arg)</span></span>;</div></pre></td></tr></table></figure></p>
+<p>列举12, 一个固定的多值财产的运作</p>
+</blockquote>
+<ul>
+<li>那么当我们有动态属性的时候，我们可以按照清单12的方式获得一个接口吗？那么，如果我们努力工作，就可以如图7所示。但这是一个复杂的模型。同一些聪明的编码，我们可以隐藏接口之后的复杂性（清单13和13）清单14），并且使用起来相当方便（清单15）。但客户仍然需要知道哪些属性是单值的，哪些属性是多值的，所有的检查正确的使用只能在运行时发生。 所有这些复杂性是痛苦的 - 更加痛苦比使用固定的属性。我会非常不愿走这么远。</li>
+</ul>
+<p><img src="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/12_1.png" alt="image"></p>
+<blockquote>
+<p>图7.满足对多值动态属性的过度支持</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class Person</div><div class="line">public Object getValueOf(ContactType key);</div><div class="line">public Enumeration getValuesOf(ContactType key);</div><div class="line">public void setValueOf(ContactType key, Object newValue);</div><div class="line">public void addValueTo(ContactType key, Object newValue);</div><div class="line">public void removeValueFrom(ContactType key, Object newValue);</div><div class="line">class ContactType</div><div class="line">public Class getValueType();</div><div class="line">public boolean isMultiValued();</div><div class="line">public boolean isSingleValued();</div><div class="line">public ContactType(String name, Class valueType, boolean isMultiValued);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>列举13, 图7的操作</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></div><div class="line"><span class="class"><span class="title">public</span> <span class="title">Object</span> <span class="title">getValueOf</span>(<span class="title">ContactType</span> <span class="title">key</span>) </span>&#123;</div><div class="line"><span class="keyword">if</span> (key.isMultiValued())</div><div class="line"><span class="keyword">throw</span> IllegalArgumentException(“<span class="function">should use <span class="title">getValuesOf</span><span class="params">()</span>”)</span></div><div class="line"><span class="function"><span class="comment">//return the value</span></span></div><div class="line"><span class="function">&#125;</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addValueTo</span><span class="params">(ContactType key, Object newValue)</span> </span>&#123;</div><div class="line"><span class="keyword">if</span> (key.isSingleValued())</div><div class="line"><span class="keyword">throw</span> IllegalArgumentException(“should use setValueOf”);</div><div class="line"><span class="keyword">if</span> (! key.getValueType().isInstance(newValue))</div><div class="line"><span class="keyword">throw</span> IllegalArgumentException (“Incorrect type <span class="keyword">for</span> property”);</div><div class="line"><span class="comment">//add the value to the collection</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>列举14, 检查清单13的操作的使用情况</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">fax = <span class="keyword">new</span> ContactType(“fax”, Class.forName(“PhoneNumber”), <span class="keyword">false</span>);</div><div class="line">Person martin = <span class="keyword">new</span> Person(“martin”);</div><div class="line">martin.setValueOf(“fax”, <span class="keyword">new</span> PhoneNumber(“<span class="number">123</span> <span class="number">1234</span>”);</div><div class="line">martinFax = martin.getValueOf(“fax”);</div><div class="line">friends = <span class="keyword">new</span> ContactType (“friends”, Class.forName(“Person”), <span class="keyword">true</span>);</div><div class="line">martin.addValueTo(“friends”, <span class="keyword">new</span> Person(“Kent”));</div></pre></td></tr></table></figure>
+<blockquote>
+<p>列举15, 使用清单13的操作</p>
+</blockquote>
+<ul>
+<li>出现这种复杂性是因为我们既有多值也有单值属性。处理这些问题有一个固有的不同的界面，因此复杂性。 的当然，我们可以得到只有多值属性的情况。 这是一个常见的模式类型化关系模式（图8）。 这里一个人可能有不同的数目与一些不同公司的雇佣关系（甚至与几家公司的雇佣关系）同一家公司）。</li>
+</ul>
+<p><img src="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/13_1.png" alt="image"></p>
+<blockquote>
+<p>图8.类型关系的一个例子</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employment</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">Employment</span> <span class="params">(Person person, Company company, Employment Type type)</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">terminate</span><span class="params">()</span></span></div><div class="line"><span class="function">…&#125;</span></div><div class="line"><span class="function">class Person </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> Enumeration <span class="title">getEmployments</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEmployment</span> <span class="params">(Company company, EmploymentType type)</span></span>;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>列举15, 图8的<code>Java</code>接口</p>
+</blockquote>
+<ul>
+<li>正如我们想到的那样，它很快就会发生，这与使用a非常类似定义的动态属性是多值的，但使用分离属性来表示比合格的协会。 （或者这句话太过分了吗？）确实如此9显示了在这种情况下如何使用Defined Dynamic Property接口。 这个观点事情是真的，所以一个类型化的关系不会添加任何新的模式语言。但是类型化的关系在建模界是一个非常普遍的模式，而且很多可能没有意识到它与动态属性模式的联系。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">类型关系</div><div class="line">你如何表示两个对象之间的关系？</div><div class="line">（你如何表示多值动态属性？）</div><div class="line">为两个对象之间的每个链接创建一个关系对象。 给关系对象一个类型对象来表示关系的含义。</div><div class="line">（类型对象是多值属性的名称。）</div></pre></td></tr></table></figure>
+<ul>
+<li>类型化关系的优势在于它能够与双向关系良好地协作它提供了一个简单的点来添加关系的属性。 （后者当然是一个单独属性的功能）。您可以为此模式添加复杂的知识级别，沿着与键入的动态属性大致相同的路线。不过你应该考虑一下界面影响。类型化的关系迫使用户意识到雇佣对象，因为确实使用单独的属性。事实上，人们倾向于将财产对象看作是一个完全成熟的对象，而不是一个人（或公司）的一些财产。但合格的关联通常可以为许多目的提供更简单的接口。所以每当你看，或者你正在考虑使用，一种类型的关系;你也应该考虑一下合格的协会形式。您可以在任一方向或两个方向使用它，也可以使用它除了类型化的关系，或者除此之外。</li>
+<li>但是这两种模式并不完全相同。如果你使用图9，你正在指出一个雇主只能是某一特定工种的雇主。图8没有这样的尽管大多数建模者会暗示这样的约束，除非工作有附加属性。当然，就业往往是有的附加属性。一个常见的例子是日期范围（如问责制[Fowler，AP2.4节。</li>
+</ul>
+<p><img src="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/14_1.png" alt="image"></p>
+<blockquote>
+<p>图9.使用与图8相同情况的合格关联</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> Person</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEmployer</span> <span class="params">(Company company, EmploymentType type)</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> Enumeration <span class="title">getEmployersOfType</span> <span class="params">(EmploymentType type)</span></span>;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>列举17, 图9的接口</p>
+</blockquote>
+<p><img src="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/15_1.png" alt="image"></p>
+<blockquote>
+<p>图10.键入的关系，显示通常假定的约束</p>
+</blockquote>
+<hr>
+<h2 id="不同种类的人"><a href="#不同种类的人" class="headerlink" title="不同种类的人"></a>不同种类的人</h2><ul>
+<li><p>到目前为止，我们假设我们只有一种人，并且我们定义了一个属性人是所有人的有效财产。但是，你确实有你的情况不同类型，不同类型的属性。经理可能需要一个财产部门管理，执行可能需要一个财产的行政洗手间的关键号码（在一个不是90年代的公司）。</p>
+</li>
+<li><p>别担心，我听到“使用继承愚蠢”的呼声。事实上，这是其中的一种情况这通常用于子类型。其实它比这个更涉及，特别是当你开始思考一个人可能扮演的角色。我已经写了一整篇文章模仿角色[福勒角色]的主题。角色模式考虑我们的情况对操作的变化和固定属性的变化感兴趣。但在这种情况下，我要探索不同类型的对象与动态属性的概念的重叠。这种重叠产生了动态属性知识水平模式（一个名字越来越少我的口味太大）。</p>
+</li>
+<li><p>为了使用这个模式，我们给Person一个Person类型的类型对象。那我们可以这样说人员类型与联系人类型的关联指示哪些人员可用的属性谁有那个人类型如果我们试图使用，或要求，在一个人的财产人类型可以用来检查使用是否正确。</p>
+</li>
+</ul>
+<p><img src="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/16_1.png" alt="image"></p>
+<blockquote>
+<p>图11.动态财产知识水平</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">getValueOf</span><span class="params">(ContactProperty key)</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasProperty</span><span class="params">(ContactProperty key)</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setValueOf</span><span class="params">(ContactProperty key, Object newValue)</span></span>;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersonType</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasProperty</span><span class="params">(ContactProperty key)</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> Enumeration <span class="title">getProperties</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>列举18, 图11的操作<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">getValueOf</span> <span class="params">(ContactProperty key)</span> </span>&#123;</div><div class="line"><span class="keyword">if</span> (!hasProperty(key))</div><div class="line"><span class="keyword">throw</span> IllegalArgumentException(“Innapropriate key”);</div><div class="line"><span class="comment">//return the value</span></div></pre></td></tr></table></figure></p>
+<p>列举19, 检查具有动态属性知识级别的适当的密钥</p>
+</blockquote>
+<ul>
+<li>当我们开始使用这样的知识水平时，单独的财产变得越来越多重要。在这种情况下，我们很快就会开始停止将其视为一种财产，而不是某种客体在自己的权利。什么是财产和什么不是非常模糊的界限，这实际上取决于你对事物的看法。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">动态财产知识水平</div><div class="line">你如何执行某些类型的对象具有某些特性使用动态属性？</div><div class="line">创建一个知识级别来包含什么类型的对象使用的规则哪些类型的属性</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="动态属性的几个小结"><a href="#动态属性的几个小结" class="headerlink" title="动态属性的几个小结"></a>动态属性的几个小结</h2><ul>
+<li><p>各种各样的动态属性构成了本文的大部分内容。但我必须重申那动态属性是我想要尽可能避免的。动态特性带来了沉重的负担：接口不够清晰，使用困难操作而不是存储的数据。只是有时候你别无选择，只能用他们在这种情况下，这个文件应该有用的给你一些替代品和之间的权衡。</p>
+</li>
+<li><p>动态属性出现在改变界面有困难的地方。人谁与分布式对象系统一样工作，至少在原则上，因为它允许他们可以在不损害客户的情况下改变界面-而在分布式系统中则可能很难找到你的客户。但是你仍然应该警惕这样做。任何当你为你有效改变的动态属性添加一个新的密钥界面。所有的动态属性都在替换运行时检查的编译时间检查。你仍然有同样的问题保持你的客户最新。</p>
+</li>
+<li><p>动态属性的另一个常见用途是在数据库中。这不仅仅是因为这个接口问题，而且由于数据迁移的问题（如果不是主要的话）。改变一个数据库模式不仅会对使用该模式的程序造成潜在的变化，可能会迫使你做一个复杂的数据转换练习。动态属性也是允许的你可以在不改变数据库模式的情况下改变一些东西，从而不需要做任何事情<br>数据转换。在大型数据库中，这可能是一个引人注目的优势。</p>
+</li>
+</ul>
+<hr>
+<h2 id="你不知道的属性"><a href="#你不知道的属性" class="headerlink" title="你不知道的属性"></a>你不知道的属性</h2><ul>
+<li><p>我想在本文中添加一个最后一个重要的属性。情况就是如此具有财产的物体没有意识到。当财产被隐含时，会发生这种情况另一个对象和它与你有关的方式。</p>
+</li>
+<li><p>考虑一个管理数据库连接的对象。它创建了一堆数据库连接并在请求时将它们交给其他对象。当一个客户端完成这个连接可以将它返回给管理员，以供其他人使用。你可以做这通过向连接添加一个isBusy属性。图12显示了使用一个替代方案外在财产。连接是空闲的还是繁忙的，取决于收集的内容它所在的连接管理器。如果你有一个连接，你不能问它是否是自由或忙碌，相反，你将不得不问连接管理器是否一个特定的连接空闲或忙碌。你可以这样说，因为组合关联是一种方式。连接不知道连接管理器。在某种意义上说是忙/闲状态根本不是一个连接的属性。但至少从某种意义上说，这就是我提到它的原因。</p>
+</li>
+</ul>
+<p><img src="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/17_1.png" alt="image"></p>
+<blockquote>
+<p>图12.使用外部收集属性</p>
+</blockquote>
+<ul>
+<li><p>在纯粹的概念模型意义上，这种模式没有多大意义。 但是这里有实际的实施原因，你可能想要使用它。 如果你想对此做所有更改财产要经过一个连接管理者，那么这个方法就说明了这一点。在特别是当你想让连接管理员免费给你时，这是一种自然的风格连接，你不关心哪一个。</p>
+</li>
+<li><p>使用外部属性的另一个原因是如果连接类是由某人提供的否则你不能改变它的接口。您可以添加新的属性而不更改连接类。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">外在属性</div><div class="line">你如何给对象一个属性而不改变它的接口？</div><div class="line">让另一个对象负责知道这个属性。</div></pre></td></tr></table></figure>
+<ul>
+<li>外在性质的一个大问题是它会导致一种尴尬和不自然的现象接口。通常如果你想知道什么，你只需找到合适的对象并询问它。 在这里你需要找到持有外部集合的对象，并询问它适当的对象。在某些情况下，比如这个，似乎是合理的。 但大部分我宁愿让对象了解自己的属性（在这种情况下，我打电话他们的内在属性）。</li>
+</ul>
+<hr>
+<h2 id="最后的想法"><a href="#最后的想法" class="headerlink" title="最后的想法"></a>最后的想法</h2><ul>
+<li>当我完成本文时，我觉得需要再次敦促你不要使用我一直在写的东西这里除非你真的需要它。固定属性的好处是伟大的。 如果你需要别的，那么我希望这篇论文给你一些想法和一些指导。但是固定的物业永远是你的第一选择。</li>
+</ul>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>[Fowler, AP] Fowler, Martin. Analysis Patterns: Reusable Object Models, Addison-1997</li>
+<li>[Fowler, roles] Fowler, Martin. Dealing with Roles,<a href="http://www.awl.com/cseng/titles/89542-0/awweb.htm" target="_blank" rel="external">http://www.awl.com/cseng/titles/89542-0/awweb.htm</a></li>
+<li>[POSA] Buschman et al, Pattern Oriented Software Architecture, Wiley 1997</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果您觉得我的文章对您有帮助,请随意打赏!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://static.zuul.top/dmrs-me/sys/WeChat-pay.png" alt="Mask 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://static.zuul.top/dmrs-me/sys/Alipay-pay.png" alt="Mask 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Mask
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://dmrs.me/113017/procesing-of-atributes-(not-profread)/" title="属性的处理(未校对)">https://dmrs.me/113017/procesing-of-atributes-(not-profread)/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/属性/" rel="tag"># 属性</a>
+          
+            <a href="/tags/设计/" rel="tag"># 设计</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/111417/ap-scan-two-dimensional-code-landing-proces/" rel="next" title="APP扫描二维码登陆流程">
+                <i class="fa fa-chevron-left"></i> APP扫描二维码登陆流程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://static.zuul.top/dmrs-me/sys/dmrs_red.png"
+                alt="Mask" />
+            
+              <p class="site-author-name" itemprop="name">Mask</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://about.me/maskleo?from=dmrs.me" title="关于我" target="_blank">关于我</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ionia-code.gitee.io/fundtool/html/index.html?from=dmrs.me" title="基金工具" target="_blank">基金工具</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://g.books.ink/?from=dmrs.me" title="代码片段" target="_blank">代码片段</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://n.books.ink/?from=dmrs.me" title="笔记本" target="_blank">笔记本</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://d.books.ink/?from=dmrs.me" title="设计模式" target="_blank">设计模式</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#属性的处理-未校对"><span class="nav-number">1.</span> <span class="nav-text">属性的处理(未校对)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#fowler-acm-org"><span class="nav-number">1.1.</span> <span class="nav-text">fowler@acm.org</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是属性"><span class="nav-number">1.2.</span> <span class="nav-text">什么是属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#固定属性"><span class="nav-number">1.3.</span> <span class="nav-text">固定属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态属性"><span class="nav-number">1.4.</span> <span class="nav-text">动态属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具有多值关联的动态属性"><span class="nav-number">1.5.</span> <span class="nav-text">具有多值关联的动态属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不同种类的人"><span class="nav-number">1.6.</span> <span class="nav-text">不同种类的人</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态属性的几个小结"><span class="nav-number">1.7.</span> <span class="nav-text">动态属性的几个小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你不知道的属性"><span class="nav-number">1.8.</span> <span class="nav-text">你不知道的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后的想法"><span class="nav-number">1.9.</span> <span class="nav-text">最后的想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.10.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mask</span>
+
+   <div class="powered-by">  
+  </div>
+  <span>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
+  
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://static.zuul.top/gitment/style/default.css">
+        <script src="https://static.zuul.top/gitment/dist/gitment.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitment({
+            id: window.location.pathname,
+            owner: 'mask-dmrs',
+            repo: 'gitment-dmrs',
+            
+            oauth: {
+            
+            
+                client_secret: '21da81e34eb6266db9bef061f616fdba8f8bb5e9',
+            
+                client_id: '03fe457f0f91d7d6e9a6'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+<script type="text/javascript">
+((window.gitter = {}).chat = {}).options = {
+    room: 'maskspace/Lobby'
+  };
+$.getScript("https://static.zuul.top/gitter/dist/sidecar.v1.js");
+	window.onload=function(){
+		$(".gitter-open-chat-button").show();
+		$(".gitter-open-chat-button").text("聊天室");
+	};
+</script>
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "default";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "default";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
