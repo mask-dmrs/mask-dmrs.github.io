@@ -131,7 +131,6 @@
 <meta property="og:site_name" content="Mask&#39;s Site">
 <meta property="og:description" content="属性的行为(未校对) Martin Fowler   fowler@acm.org   你创建的每个对象几乎都需要属性：关于对象的一些声明。一个人可能有一个身高属性，一个公司可能有一个CEO，一个航班可能有一个航班号。有很多方法来创建属性。在这篇文章中，我将探讨其中一些你经常需要用到的方法。我经常看到涉及到这个话题的图案，但他们通常只涉及一部分。在这里，我想更广泛地讨论这个问题，以便更好地讨论这些">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://dmrs.me/113017/procesing-of-atributes-(not-profread)/index.html#2">
 <meta property="og:image" content="https://dmrs.me/113017/procesing-of-atributes-(not-profread)/index.html#3">
 <meta property="og:image" content="https://dmrs.me/113017/procesing-of-atributes-(not-profread)/index.html#4">
 <meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/3_1.png">
@@ -146,11 +145,11 @@
 <meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/15_1.png">
 <meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/16_1.png">
 <meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/17_1.png">
-<meta property="og:updated_time" content="2017-12-03T03:06:21.786Z">
+<meta property="og:updated_time" content="2017-12-03T03:09:11.479Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="属性的处理(未校对)">
 <meta name="twitter:description" content="属性的行为(未校对) Martin Fowler   fowler@acm.org   你创建的每个对象几乎都需要属性：关于对象的一些声明。一个人可能有一个身高属性，一个公司可能有一个CEO，一个航班可能有一个航班号。有很多方法来创建属性。在这篇文章中，我将探讨其中一些你经常需要用到的方法。我经常看到涉及到这个话题的图案，但他们通常只涉及一部分。在这里，我想更广泛地讨论这个问题，以便更好地讨论这些">
-<meta name="twitter:image" content="https://dmrs.me/113017/procesing-of-atributes-(not-profread)/index.html#2">
+<meta name="twitter:image" content="https://dmrs.me/113017/procesing-of-atributes-(not-profread)/index.html#3">
 
 
 
@@ -452,11 +451,11 @@
 <ul>
 <li><p><a href="#1" title="Almost every object you create needs properties: some statement about the object. A person may have a height, a company may have a CEO, a flight may have a flight number. There are a number of ways to model properties. In this article I will explore some of these ways and when you may want to use them. I’ve often seen patterns touch on  this subject, but they usually only cover part of the picture. Here I want to cover the issue  more broadly to give a better discussion of the options."><span id="1">你创建的每个对象几乎都需要属性：关于对象的一些声明。一个人可能有一个身高属性，一个公司可能有一个CEO，一个航班可能有一个航班号。有很多方法来创建属性。在这篇文章中，我将探讨其中一些你经常需要用到的方法。我经常看到涉及到这个话题的图案，但他们通常只涉及一部分。在这里，我想更广泛地讨论这个问题，以便更好地讨论这些选项。<span></span></span></a></p>
 </li>
-<li><p><img src="#2" alt="最常见和最简单的情况是使用`固定属性`，即只声明类的属性。在绝大多数情况下，你只需要使用`固定属性`。在有大量固定属性或者需要频繁修改时，使用`固定属性`容易出错。这种情况下你可能会使用`动态属性`。所有的`动态属性`都有一个参数化属性的特性：你需要一个带参的方法来查询一个属性。当参数只是一个字符串,最简单的是`灵活的动态属性`。这样定义和使用属性会比较容易，但难以控制。如果你需要使用`动态属性`，在你的参数必须是一个类的实例的情况下。使用类型`动态属性`来增强对`动态属性`的控制。" title="The most common, and the simplest case is to use a Fixed Property , that is just declare the attribute on the class. In the vast majority of cases that is all you need to do. Fixed properties begin to fail when you have a large amount of them, or you need to change them frequently, possibly at run time. These forces lead you to the varieties of Dynamic Property . All dynamic properties have the quality of a parameterized attribute where to query a property you need to use a query method with a parameter. The simplest of these is the Flexible Dynamic Property where the parameter is just a string. This makes it easy to define and use properties, but is difficult to control. If you need that control you can use a Defined  Dynamic  Property  where  your parameters must be instances of some class. A further step of control allows you to strongly type your dynamic property with a Typed Dynamic Property ."></p>
+<li><p><a href="#2" title="The most common, and the simplest case is to use a Fixed Property , that is just declare the attribute on the class. In the vast majority of cases that is all you need to do. Fixed properties begin to fail when you have a large amount of them, or you need to change them frequently, possibly at run time. These forces lead you to the varieties of Dynamic Property . All dynamic properties have the quality of a parameterized attribute where to query a property you need to use a query method with a parameter. The simplest of these is the Flexible Dynamic Property where the parameter is just a string. This makes it easy to define and use properties, but is difficult to control. If you need that control you can use a Defined  Dynamic  Property  where  your parameters must be instances of some class. A further step of control allows you to strongly type your dynamic property with a Typed Dynamic Property ."><span id="2">最常见和最简单的情况是使用<code>固定属性</code>，即只声明类的属性。在绝大多数情况下，你只需要使用<code>固定属性</code>。在有大量固定属性或者需要频繁修改时，使用<code>固定属性</code>容易出错。这种情况下你可能会使用<code>动态属性</code>。所有的<code>动态属性</code>都有一个参数化属性的特性：你需要一个带参的方法来查询一个属性。当参数只是一个字符串,最简单的是<code>灵活的动态属性</code>。这样定义和使用属性会比较容易，但难以控制。如果你需要使用<code>动态属性</code>，在你的参数必须是一个类的实例的情况下。使用类型<code>动态属性</code>来增强对<code>动态属性</code>的控制。<span></span></span></a></p>
 </li>
-<li><p><img src="#3" alt="随着您的属性结构变得越来越复杂，您应该考虑将它们设置为“单独属性”，把一些属性综合起来创建一个对象。如果你需要多值属性，你可以考虑集合。在这篇文章中最复杂的例子是你想要规则来控制什么类型的对象具有什么样的属性 - 这需要一定的`动态属性`知识水平。" title="As your property structures get more involved, you should consider making them Separate Properties , which makes the property an object in its own right. If you need multi-valued properties you can consider a Typed Relationship . The most complex example in this theme is where you want rules to control what kinds of objects have what kinds of properties – this needs a Dynamic Property Knowledge Level ."></p>
+<li><p><img src="#3" alt="&lt;span id=&quot;3&quot;&gt;随着您的属性结构变得越来越复杂，您应该考虑将它们设置为“单独属性”，把一些属性综合起来创建一个对象。如果你需要多值属性，你可以考虑集合。在这篇文章中最复杂的例子是你想要规则来控制什么类型的对象具有什么样的属性 - 这需要一定的`动态属性`知识水平。&lt;span&gt;" title="As your property structures get more involved, you should consider making them Separate Properties , which makes the property an object in its own right. If you need multi-valued properties you can consider a Typed Relationship . The most complex example in this theme is where you want rules to control what kinds of objects have what kinds of properties – this needs a Dynamic Property Knowledge Level ."></p>
 </li>
-<li><p><img src="#4" alt="另一种属性完全是`外部属性`（Extrinsic Property），如果你想使用接口给一个对象创建一个属性，那么这就是你需要使用的一种模式。" title="Another variety of property entirely is the Extrinsic Property , a pattern you use if you want to give an object a property, but not alter its interface to support it."></p>
+<li><p><img src="#4" alt="&lt;span id=&quot;4&quot;&gt;另一种属性完全是`外部属性`（Extrinsic Property），如果你想使用接口给一个对象创建一个属性，那么这就是你需要使用的一种模式。&lt;span&gt;" title="Another variety of property entirely is the Extrinsic Property , a pattern you use if you want to give an object a property, but not alter its interface to support it."></p>
 </li>
 </ul>
 <table>
