@@ -123,14 +123,17 @@
 
 
 
-<meta name="description" content="属性的处理(未校对) Martin Fowler    fowler@acm.org 几乎你创建的每个对象都需要属性：关于对象的一些声明。一个人可能有一个高度，一个公司可能有一个CEO，一个航班可能有一个航班号。有很多方法来建模属性。在这篇文章中，我将探讨其中一些方法，当你可能想要使用它们。我经常看到图案触及这个主题，但他们通常只涉及部分图片。在这里，我想更广泛地讨论这个问题，以便更好地讨论这些选">
+<meta name="description" content="属性的行为(未校对) Martin Fowler   fowler@acm.org   你创建的每个对象几乎都需要属性：关于对象的一些声明。一个人可能有一个身高属性，一个公司可能有一个CEO，一个航班可能有一个航班号。有很多方法来创建属性。在这篇文章中，我将探讨其中一些你经常需要用到的方法。我经常看到涉及到这个话题的图案，但他们通常只涉及一部分。在这里，我想更广泛地讨论这个问题，以便更好地讨论这些">
 <meta name="keywords" content="属性,设计">
 <meta property="og:type" content="article">
 <meta property="og:title" content="属性的处理(未校对)">
 <meta property="og:url" content="https://dmrs.me/113017/procesing-of-atributes-(not-profread)/index.html">
 <meta property="og:site_name" content="Mask&#39;s Site">
-<meta property="og:description" content="属性的处理(未校对) Martin Fowler    fowler@acm.org 几乎你创建的每个对象都需要属性：关于对象的一些声明。一个人可能有一个高度，一个公司可能有一个CEO，一个航班可能有一个航班号。有很多方法来建模属性。在这篇文章中，我将探讨其中一些方法，当你可能想要使用它们。我经常看到图案触及这个主题，但他们通常只涉及部分图片。在这里，我想更广泛地讨论这个问题，以便更好地讨论这些选">
+<meta property="og:description" content="属性的行为(未校对) Martin Fowler   fowler@acm.org   你创建的每个对象几乎都需要属性：关于对象的一些声明。一个人可能有一个身高属性，一个公司可能有一个CEO，一个航班可能有一个航班号。有很多方法来创建属性。在这篇文章中，我将探讨其中一些你经常需要用到的方法。我经常看到涉及到这个话题的图案，但他们通常只涉及一部分。在这里，我想更广泛地讨论这个问题，以便更好地讨论这些">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://dmrs.me/113017/procesing-of-atributes-(not-profread)/index.html#2">
+<meta property="og:image" content="https://dmrs.me/113017/procesing-of-atributes-(not-profread)/index.html#3">
+<meta property="og:image" content="https://dmrs.me/113017/procesing-of-atributes-(not-profread)/index.html#4">
 <meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/3_1.png">
 <meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/5_1.png">
 <meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/7_1.png">
@@ -143,11 +146,11 @@
 <meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/15_1.png">
 <meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/16_1.png">
 <meta property="og:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/17_1.png">
-<meta property="og:updated_time" content="2017-11-30T15:43:22.881Z">
+<meta property="og:updated_time" content="2017-12-03T02:56:22.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="属性的处理(未校对)">
-<meta name="twitter:description" content="属性的处理(未校对) Martin Fowler    fowler@acm.org 几乎你创建的每个对象都需要属性：关于对象的一些声明。一个人可能有一个高度，一个公司可能有一个CEO，一个航班可能有一个航班号。有很多方法来建模属性。在这篇文章中，我将探讨其中一些方法，当你可能想要使用它们。我经常看到图案触及这个主题，但他们通常只涉及部分图片。在这里，我想更广泛地讨论这个问题，以便更好地讨论这些选">
-<meta name="twitter:image" content="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/3_1.png">
+<meta name="twitter:description" content="属性的行为(未校对) Martin Fowler   fowler@acm.org   你创建的每个对象几乎都需要属性：关于对象的一些声明。一个人可能有一个身高属性，一个公司可能有一个CEO，一个航班可能有一个航班号。有很多方法来创建属性。在这篇文章中，我将探讨其中一些你经常需要用到的方法。我经常看到涉及到这个话题的图案，但他们通常只涉及一部分。在这里，我想更广泛地讨论这个问题，以便更好地讨论这些">
+<meta name="twitter:image" content="https://dmrs.me/113017/procesing-of-atributes-(not-profread)/index.html#2">
 
 
 
@@ -443,31 +446,32 @@
       
 
       
-        <h1 id="属性的处理-未校对"><a href="#属性的处理-未校对" class="headerlink" title="属性的处理(未校对)"></a>属性的处理(未校对)</h1><hr>
-<p><em>Martin Fowler</em>   </p><p></p>
-<h2 id="fowler-acm-org"><a href="#fowler-acm-org" class="headerlink" title="fowler@acm.org"></a>fowler@acm.org</h2><ul>
-<li><p>几乎你创建的每个对象都需要属性：关于对象的一些声明。一个人可能有一个高度，一个公司可能有一个CEO，一个航班可能有一个航班号。有很多方法来建模属性。在这篇文章中，我将探讨<br>其中一些方法，当你可能想要使用它们。我经常看到图案触及这个主题，但他们通常只涉及部分图片。在这里，我想更广泛地讨论这个问题，以便更好地讨论这些选项。</p>
+        <h1 id="属性的行为-未校对"><a href="#属性的行为-未校对" class="headerlink" title="属性的行为(未校对)"></a>属性的行为(未校对)</h1><hr>
+<p><em>Martin Fowler</em>   </p><p><br>fowler@acm.org</p>
+<hr>
+<ul>
+<li><p><a href="h" title="almost every object you create needs properties: some statement about the object. A person may have a height, a company may have a CEO, a flight may have a flight number. There are a number of ways to model properties. In this article I will explore some of these ways and when you may want to use them. I’ve often seen patterns touch on  this subject, but they usually only cover part of the picture. Here I want to cover the issue  more broadly to give a better discussion of the options.">你创建的每个对象几乎都需要属性：关于对象的一些声明。一个人可能有一个身高属性，一个公司可能有一个CEO，一个航班可能有一个航班号。有很多方法来创建属性。在这篇文章中，我将探讨其中一些你经常需要用到的方法。我经常看到涉及到这个话题的图案，但他们通常只涉及一部分。在这里，我想更广泛地讨论这个问题，以便更好地讨论这些选项。</a></p>
 </li>
-<li><p>最常见和最简单的情况是使用固定属性，即只声明类的属性。在绝大多数情况下，你只需要做。固定属性在有大量固定属性时会失败，或者需要频繁更改，可能在运行时。这些力量带领您到各种各样的动态财产。所有动态属性都具有参数化属性的质量，在这里查询需要使用带有参数的查询方法的属性。其中最简单的是灵活的动态属性，其中参数只是一个字符串。这使得定义和使用属性变得容易，但难以控制。如果您需要该控件，则可以使用“定义的动态属性”，其中参数必须是某个类的实例。进一步的控制步骤允许您强有力地键入您的动态属性与类型动态属性。</p>
+<li><p><img src="#2" alt="最常见和最简单的情况是使用`固定属性`，即只声明类的属性。在绝大多数情况下，你只需要使用`固定属性`。在有大量固定属性或者需要频繁修改时，使用`固定属性`容易出错。这种情况下你可能会使用`动态属性`。所有的`动态属性`都有一个参数化属性的特性：你需要一个带参的方法来查询一个属性。当参数只是一个字符串,最简单的是`灵活的动态属性`。这样定义和使用属性会比较容易，但难以控制。如果你需要使用`动态属性`，在你的参数必须是一个类的实例的情况下。使用类型`动态属性`来增强对`动态属性`的控制。" title="The most common, and the simplest case is to use a Fixed Property , that is just declare the attribute on the class. In the vast majority of cases that is all you need to do. Fixed properties begin to fail when you have a large amount of them, or you need to change them frequently, possibly at run time. These forces lead you to the varieties of Dynamic Property . All dynamic properties have the quality of a parameterized attribute where to query a property you need to use a query method with a parameter. The simplest of these is the Flexible Dynamic Property where the parameter is just a string. This makes it easy to define and use properties, but is difficult to control. If you need that control you can use a Defined  Dynamic  Property  where  your parameters must be instances of some class. A further step of control allows you to strongly type your dynamic property with a Typed Dynamic Property ."></p>
 </li>
-<li><p>随着您的财产结构变得越来越复杂，您应该考虑将它们设置为“单独属性”，从而使属性成为一个对象。如果你需要多值属性，你可以考虑一个类型化的关系。在这个主题中最复杂的例子是你想要规则来控制什么类型的对象具有什么样的属性 - 这需要动态属性知识水平。</p>
+<li><p><img src="#3" alt="随着您的属性结构变得越来越复杂，您应该考虑将它们设置为“单独属性”，把一些属性综合起来创建一个对象。如果你需要多值属性，你可以考虑集合。在这篇文章中最复杂的例子是你想要规则来控制什么类型的对象具有什么样的属性 - 这需要一定的`动态属性`知识水平。" title="As your property structures get more involved, you should consider making them Separate Properties , which makes the property an object in its own right. If you need multi-valued properties you can consider a Typed Relationship . The most complex example in this theme is where you want rules to control what kinds of objects have what kinds of properties – this needs a Dynamic Property Knowledge Level ."></p>
 </li>
-<li><p>另一种属性完全是外部属性（Extrinsic Property），如果你想给一个对象一个属性，但是不改变它的接口来支持它，那么就是你使用的一种模式。</p>
+<li><p><img src="#4" alt="另一种属性完全是`外部属性`（Extrinsic Property），如果你想使用接口给一个对象创建一个属性，那么这就是你需要使用的一种模式。" title="Another variety of property entirely is the Extrinsic Property , a pattern you use if you want to give an object a property, but not alter its interface to support it."></p>
 </li>
 </ul>
 <table>
 <thead>
 <tr>
-<th>Problem</th>
-<th>Solution</th>
-<th>Name</th>
-<th>page</th>
+<th>问题</th>
+<th>答案</th>
+<th>名称</th>
+<th>页码</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td> &nbsp;</td>
-<td>给它一个这个事实的特定属性。这将转化为查询方法，并可能是一种编程语言的更新方法.</td>
+<td>在编程语言里，当使用一个特定的属性，它需要查询或者更新。</td>
 <td><a href="#固定属性">固定属性</a></td>
 <td>4</td>
 </tr>
@@ -534,7 +538,7 @@
 </ul>
 <p><img src="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/3_1.png" alt="image"></p>
 <blockquote>
-<p>图1.使用固定属性建模的人员<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> Date <span class="title">getDateOfBirth</span><span class="params">()</span></span>; </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> Quantity <span class="title">getHeight</span><span class="params">()</span></span>; </div><div class="line"><span class="function"><span class="keyword">public</span> Company <span class="title">getEmployer</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDateOfBirth</span> <span class="params">(Date newDateOfBirth)</span></span>; </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEmployer</span> <span class="params">(Company newEmployer)</span></span>;</div></pre></td></tr></table></figure></p>
+<p>图1.使用固定属性建模的人员<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> Date <span class="title">getDateOfBirth</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> Quantity <span class="title">getHeight</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> Company <span class="title">getEmployer</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDateOfBirth</span> <span class="params">(Date newDateOfBirth)</span></span>;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEmployer</span> <span class="params">(Company newEmployer)</span></span>;</div></pre></td></tr></table></figure></p>
 <p>列举,图1的<code>java</code>操作</p>
 </blockquote>
 <ul>
@@ -543,7 +547,7 @@
 <li><p>修饰符操作的存在取决于您是否希望直接修改值。如果你这样做，那么你会根据一些命名方案，例如setDateOfBirth（Date）提供一个修饰符操作。对于返回值存在不同的约定。你可以返回属性的新值（Date），被修改的对象（Person），或者什么都没有（void）。我更愿意在修饰符上返回void，以帮助明确修饰符和查询之间的区别。</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> 固定属性</div><div class="line">你如何代表一个对象的事实？给它一个这个事实的特定属性。 这将转化为查询方法，并可能是一种编程语言的更新方法。 </div><div class="line"> √ 清晰的界面</div><div class="line"> × 只能在设计时添加属性</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> 固定属性</div><div class="line">你如何代表一个对象的事实？给它一个这个事实的特定属性。 这将转化为查询方法，并可能是一种编程语言的更新方法。</div><div class="line"> √ 清晰的界面</div><div class="line"> × 只能在设计时添加属性</div></pre></td></tr></table></figure>
 <ul>
 <li><p>您可能希望为属性的构造函数提供参数。通常，您要在构造函数中设置足够的属性，以便构建格式良好的类。</p>
 </li>
@@ -554,7 +558,7 @@
 </ul>
 <h2 id="动态属性"><a href="#动态属性" class="headerlink" title="动态属性"></a><span id="动态属性">动态属性</span></h2><ul>
 <li><p>固定属性的关键在于您在设计时修复了这些属性，并且所有实例在运行时都必须遵循该决定。 对于一些问题，这是一个尴尬的限制。 想象一下，我们正在建立一个复杂的联络系统。 有一些东西是固定的：家庭住址，家庭和工作电话，电子邮件。 但他们是各种各样的小变化。 对于需要记录父母地址的人，另一个人有白天工作和晚上工作号码。 事先很难预测所有这些事情，每次更改系统时都必须经过编译，测试和分发。 要处理这个问题，你需要使用动态属性。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">动态属性</div><div class="line">你如何代表一个对象的事实？</div><div class="line">提供可参数化的属性，可以根据参数表示不同的属性 </div><div class="line">√ 可以在运行时添加属性</div><div class="line">× 不清楚的界面</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">动态属性</div><div class="line">你如何代表一个对象的事实？</div><div class="line">提供可参数化的属性，可以根据参数表示不同的属性</div><div class="line">√ 可以在运行时添加属性</div><div class="line">× 不清楚的界面</div></pre></td></tr></table></figure>
 </li>
 <li><p>动态属性有多种变化，每种变化都会在灵活性和安全性之间做出不同的折衷。 最简单的方法是灵活的动态属性。 这种模式的本质是为键值为简单值的人（通常是字符串）添加一个合格的关联（参见图2和清单2）。 如果您想为某人Kent添加休假地址，则只需使用清单3中的代码即可。您不需要重新编译人员类。 你甚至可以建立一个图形用户界面（GUI）或者文件读取器来添加属性，而不用重新编译客户端。<br><img src="https://static.zuul.top/java-design-patterns-doc-for-cn/abstract-document/5_1.png" alt="image"></p>
 <blockquote>
@@ -1066,7 +1070,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#属性的处理-未校对"><span class="nav-number">1.</span> <span class="nav-text">属性的处理(未校对)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#fowler-acm-org"><span class="nav-number">1.1.</span> <span class="nav-text">fowler@acm.org</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是属性"><span class="nav-number">1.2.</span> <span class="nav-text">什么是属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#固定属性"><span class="nav-number">1.3.</span> <span class="nav-text">固定属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态属性"><span class="nav-number">1.4.</span> <span class="nav-text">动态属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具有多值关联的动态属性"><span class="nav-number">1.5.</span> <span class="nav-text">具有多值关联的动态属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不同种类的人"><span class="nav-number">1.6.</span> <span class="nav-text">不同种类的人</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态属性的几个小结"><span class="nav-number">1.7.</span> <span class="nav-text">动态属性的几个小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你不知道的属性"><span class="nav-number">1.8.</span> <span class="nav-text">你不知道的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后的想法"><span class="nav-number">1.9.</span> <span class="nav-text">最后的想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.10.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#属性的行为-未校对"><span class="nav-number">1.</span> <span class="nav-text">属性的行为(未校对)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是属性"><span class="nav-number">1.1.</span> <span class="nav-text">什么是属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#固定属性"><span class="nav-number">1.2.</span> <span class="nav-text">固定属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态属性"><span class="nav-number">1.3.</span> <span class="nav-text">动态属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具有多值关联的动态属性"><span class="nav-number">1.4.</span> <span class="nav-text">具有多值关联的动态属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不同种类的人"><span class="nav-number">1.5.</span> <span class="nav-text">不同种类的人</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态属性的几个小结"><span class="nav-number">1.6.</span> <span class="nav-text">动态属性的几个小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你不知道的属性"><span class="nav-number">1.7.</span> <span class="nav-text">你不知道的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后的想法"><span class="nav-number">1.8.</span> <span class="nav-text">最后的想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.9.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
             
 
           </div>
