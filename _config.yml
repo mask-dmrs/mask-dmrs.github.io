@@ -4,7 +4,7 @@
 
 # Site
 title: Mask's Site
-subtitle: 简单 × 踏实 × 修养 × 价值
+subtitle: 失败不可怕,可怕的是我本可以
 description: mask,dmrs,java,blog
 author: Mask
 language: zh-Hans
@@ -27,6 +27,8 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+  - CNAME
+  - README.md
 
 # Writing
 new_post_name: :title.md # File name of new posts
