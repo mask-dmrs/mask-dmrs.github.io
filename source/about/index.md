@@ -15,7 +15,7 @@ date: 2017-10-22 11:57:52
 ---
 
 #### 关于本人
-- Email：masque.fate@gmail.com
+- Email：github@m.dmrs.me
 - QQ：3081927676
 - 微信号：bughope 
 - 原创内容均亲自实践过,若有疏漏或者不恰当之处欢迎[指正](https://gitter.im/maskspace/Lobby?from=dmrs.me).
