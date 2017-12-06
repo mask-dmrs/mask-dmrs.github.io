@@ -1,0 +1,3 @@
+- [七个对我最重要的职业建议（译文）](http://www.ruanyifeng.com/blog/2015/09/career-advice.html)
+- [六边形](http://www.16sucai.com/uploadfile/show2013/0605002/#)
+- [start管理](https://app.astralapp.com)
