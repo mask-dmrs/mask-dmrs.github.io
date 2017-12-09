@@ -59,8 +59,31 @@ index_generator:
 # Category & Tag
 default_category: uncategorized
 category_map:
+  设计模式: design-patterns
+  Java相关: java
+  其他: other
+  译文: translate
 tag_map:
-
+  Java基础: java-basic
+  初级难度: difficulty-beginner
+  中级难度: difficulty-intermediate
+  主题: theme
+  二维码: qr-code
+  二进制: binary
+  位运算: bit-operation
+  其他: other
+  属性: properties
+  房子: house
+  插件: plugin
+  流程: flow
+  生活: live
+  登陆: login
+  程序员: programmer
+  规范: standard
+  设计: design
+  译文: translate
+  转载: reprint
+  
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in

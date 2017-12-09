@@ -4,7 +4,7 @@ tags:
   - 插件
   - gitment
   - Hexo
-  - 规范开发
+  - 规范
 categories: Hexo
 permalink: hexo-integrated-gitment-exception-handling
 date: 2017-11-09 00:27:57

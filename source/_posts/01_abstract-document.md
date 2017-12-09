@@ -7,7 +7,7 @@ tags:
  - 中级难度
  - 译文
 photos:
- - http://static.dmrs.me/java-design-patterns-doc-cn/01_abstract-document.png
+ - https://static.zuul.top/java-design-patterns-doc-cn/01_abstract-document.png
 ---
 
 https://github.com/mask-dmrs/java-design-patterns/tree/my-master/01_abstract-document
