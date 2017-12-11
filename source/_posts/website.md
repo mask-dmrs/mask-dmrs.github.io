@@ -19,3 +19,5 @@ tags:
 - [进度条&勋章](http://shields.io/)
 - [图标生成](https://poser.pugx.org/)
 - [在线编辑](https://www.zybuluo.com/mdeditor)
+- go语言学习
+  - [tour](https://tour.go-zh.org)
