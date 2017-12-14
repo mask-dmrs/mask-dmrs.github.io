@@ -2,3 +2,9 @@
 Thumbs.db
 *.log
 /public
+db.json
+.idea/workspace.xml
+db.json
+.deploy_git
+.idea/workspace.xml
+db.json
