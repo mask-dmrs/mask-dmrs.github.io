@@ -134,7 +134,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
 - type: git
-  repo: https://github.com/mask-dmrs/mask-dmrs.github.io
+  repo: https://github.com/maskleo/maskleo.github.io
   branch: master
 - type: git
   repo: http://git.coding.net/Ionia/lonia.git
