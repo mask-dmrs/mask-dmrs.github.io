@@ -5,9 +5,9 @@
 # Site
 title: Mask's Site
 subtitle: 失败不可怕,可怕的是我本可以.
-description: mask,dmrs,java,blog
-author: Mask
-language: zh-Hans
+description: mask,dmrs,java,blog,next,hexo
+author: Mask Leo
+language: zh-CN
 timezone:
 
 # URL
@@ -128,7 +128,7 @@ search:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: landscape
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

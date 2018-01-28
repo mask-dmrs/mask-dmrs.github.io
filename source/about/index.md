@@ -14,9 +14,9 @@ date: 2017-10-22 11:57:52
 ---
 
 #### 关于本人
-- Email：github@m.dmrs.me
-- QQ：3081927676
-- 微信号：bughope 
+- Email：3081927676@qq.com
+- QQ：81927676
+- 微信号：81927676 
 - 原创内容均亲自实践过,若有疏漏或者不恰当之处欢迎[指正](https://gitter.im/maskspace/Lobby?from=dmrs.me).
 - 欢迎给我**[<font color="red">留言</font>](https://gitter.im/maskspace/Lobby?from=dmrs.me)**.
 
@@ -27,10 +27,6 @@ date: 2017-10-22 11:57:52
 本站所有内容本着共享原则,转载请在显著位置标明来源和原作者(非原创内容遵循原有协议发布,著作权归属原作者或是团队),除特别声明外任何商业用途请联系作者,若侵犯到了您的合法权益,请联系邮件。
    
 ---
-[comment]: 个人常用网站</br>
-[comment]: [基金均线分析](http://ionia-code.gitee.io/fundtool/html/index.html)</br>
-[comment]: 数据来自天天基金网,由于原数据接口是http的为了防止跨域问题,采用http,挂在开源中国的[码云](https://gitee.com)上. 
-
 
 #### 更新记录
 - 2017年11月13日将七牛云存储文件新建了一个工厂,独立了一个pages服务,分离出一些原来`github`上的文件,加速网页打开速度.
