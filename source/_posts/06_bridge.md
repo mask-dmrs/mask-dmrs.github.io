@@ -7,7 +7,7 @@ tags:
  - Java
  - 中级难度
 photos:
- - http://static.zuul.top/java-design-patterns-doc-cn/06_bridge.png
+ - https://static.zuul.top/java-design-patterns-doc-cn/06_bridge.png
 ---
 https://github.com/mask-dmrs/java-design-patterns/tree/my-master/06_bridge
 ## 也被称为

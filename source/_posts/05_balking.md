@@ -7,7 +7,7 @@ tags:
  - Java
  - 初级难度
 photos:
- - http://static.zuul.top/java-design-patterns-doc-cn/05_balking.png
+ - https://static.zuul.top/java-design-patterns-doc-cn/05_balking.png
 ---
 https://github.com/mask-dmrs/java-design-patterns/tree/my-master/05_balking
 
