@@ -141,7 +141,7 @@
 <meta property="og:site_name" content="Mask&#39;s Site">
 <meta property="og:description" content="需求实现类似这个的排序后台逻辑 思考 必要字段主键id，sequence 前端传递最后的值直接保存? 如果这个不是管理员使用的话，可能被注入错乱的相同排序序号，就无法正确的排序了。 时间比较紧急，前端需要去查找插件的使用方法等。 通常前端是实现页面效果和简单的控制，复杂的逻辑还是后端实现。   排序逻辑思考  最简单的情况 初始值如下 12345id   -   sequenceA    -">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-28T02:56:49.270Z">
+<meta property="og:updated_time" content="2018-02-04T09:59:02.976Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拖动排序后台逻辑思考过程">
 <meta name="twitter:description" content="需求实现类似这个的排序后台逻辑 思考 必要字段主键id，sequence 前端传递最后的值直接保存? 如果这个不是管理员使用的话，可能被注入错乱的相同排序序号，就无法正确的排序了。 时间比较紧急，前端需要去查找插件的使用方法等。 通常前端是实现页面效果和简单的控制，复杂的逻辑还是后端实现。   排序逻辑思考  最简单的情况 初始值如下 12345id   -   sequenceA    -">
@@ -438,7 +438,8 @@
 <li><p>在<code>java</code>中排序然后批量更新(逐条更新会有并发问题的可能性)。</p>
   <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> BaseResp&lt;Void&gt; <span class="title">sort</span><span class="params">(List&lt;DocumentSort&gt; sortList)</span> </span>&#123;</div><div class="line"> List&lt;Integer&gt; sequenceList = <span class="keyword">new</span> ArrayList&lt;&gt;(sortList.size());</div><div class="line">    sortList.forEach(d -&gt; sequenceList.add(d.getSequence()));</div><div class="line">    Collections.sort(sequenceList);</div><div class="line">    List&lt;DocumentCatalog&gt; needUpdate = <span class="keyword">new</span> LinkedList&lt;&gt;();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sortList.size(); i++) &#123;</div><div class="line">        DocumentSort document = sortList.get(i);</div><div class="line">        <span class="keyword">if</span>(Objects.equals(document.getSequence(), sequenceList.get(i)))&#123;</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        &#125;</div><div class="line">        DocumentCatalog catalog = <span class="keyword">new</span> DocumentCatalog();</div><div class="line">        catalog.setId(document.getId());</div><div class="line">        catalog.setSequence(sequenceList.get(i));</div><div class="line">        needUpdate.add(catalog);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(<span class="number">0</span> != needUpdate.size()) &#123;</div><div class="line">        documentCatalogMapper.batchUpdate(needUpdate);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
-<li>通过测试这段代码还是存在问题：<ul>
+<li><p>通过测试这段代码还是存在问题：</p>
+<ul>
 <li>当前端拖动的速度过快，数据<code>sequence</code>重复了！！！<ul>
 <li>java并发问题?<ul>
 <li>这个方法没有共享变量</li>
@@ -450,8 +451,54 @@
 <li>偶然发生<code>debug</code>不合适</li>
 </ul>
 </li>
-<li>详细日志，重现问题<ol>
-<li>初始值<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">id   -   sequence  db-sequence</div><div class="line">A    -      1           1</div><div class="line">B    -      2           2</div><div class="line">C    -      3           3</div><div class="line">D    -      4           4</div></pre></td></tr></table></figure>
+<li><p>详细日志，重现问题</p>
+<ol>
+<li><p>初始值</p>
+<pre>
+id   -   sequence  db-sequence
+A    -      1           1
+B    -      2           2
+C    -      3           3
+D    -      4           4
+</pre>
+</li>
+<li><p>将<code>D</code>移至第一个</p>
+<pre>
+id   -   sequence  db-sequence
+D    -      1           1
+A    -      2           2
+B    -      3           3
+C    -      4           4
+</pre>
+</li>
+<li><p>将<code>A</code>和<code>B</code>调换  此时前端传递的<code>sequence</code>没变</p>
+<pre>
+id   -   sequence  db-sequence
+D    -      4           1
+B    -      2           3
+A    -      1           2
+C    -      3           4
+</pre>
+</li>
+<li><p>重排后结果：</p>
+<pre>
+id   -   sequence  db-sequence
+D    -      1           1
+B    -      2           3
+A    -      3           2
+C    -      4           4
+</pre>          
+</li>
+<li><p>增量更新就不会更新<code>B</code>的<code>sequence</code><br>最后结果数据库</p>
+<pre>
+id   -   sequence  db-sequence
+D    -      1           1
+B    -      2           3
+A    -      3           3
+C    -      4           4
+</pre>          
+</li>
+<li><p>此时出现了2个<code>3</code></p>
 </li>
 </ol>
 </li>
@@ -459,35 +506,6 @@
 </li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-<pre><code>2. 将`D`移至第一个
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">id   -   sequence  db-sequence</div><div class="line">D    -      1           1</div><div class="line">A    -      2           2</div><div class="line">B    -      3           3</div><div class="line">C    -      4           4</div><div class="line">``` </div><div class="line">      </div><div class="line">3. 将`A`和`B`调换  此时前端传递的`sequence`没变</div></pre></td></tr></table></figure>
-
-id   -   sequence  db-sequence
-D    -      4           1
-B    -      2           3
-A    -      1           2
-C    -      3           4
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">4. 重排后结果：</div></pre></td></tr></table></figure>
-
-id   -   sequence  db-sequence
-D    -      1           1
-B    -      2           3
-A    -      3           2
-C    -      4           4
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">5. 增量更新就不会更新`B`的`sequence`</div><div class="line">最后结果数据库</div></pre></td></tr></table></figure>
-
-id   -   sequence  db-sequence
-D    -      1           1
-B    -      2           3
-A    -      3           3
-C    -      4           4
-```          
-
-6. 此时出现了2个`3`
-</code></pre><ul>
 <li>最终代码全量更新得到正确结果：       <pre><code class="java"><span class="function"><span class="keyword">public</span> BaseResp&lt;Void&gt; <span class="title">sort</span><span class="params">(List&lt;DocumentSort&gt; sortList)</span> </span>{
  List&lt;Integer&gt; sequenceList = <span class="keyword">new</span> ArrayList&lt;&gt;(sortList.size());
     sortList.forEach(d -&gt; sequenceList.add(d.getSequence()));
@@ -504,6 +522,8 @@ C    -      4           4
         documentCatalogMapper.batchUpdate(needUpdate);
 }
 </code></pre>
+</li>
+</ul>
 </li>
 </ul>
 
@@ -594,8 +614,8 @@ C    -      4           4
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/010418/why-ValueOperations-can-inject-RedisTemplate/" rel="next" title="关于RedisTemplate能注入到ValueOperations对象的疑问解惑">
-                <i class="fa fa-chevron-left"></i> 关于RedisTemplate能注入到ValueOperations对象的疑问解惑
+              <a href="/012718/wrong-timestamp-used/" rel="next" title="错误的使用了时间戳">
+                <i class="fa fa-chevron-left"></i> 错误的使用了时间戳
               </a>
             
           </div>
@@ -603,10 +623,6 @@ C    -      4           4
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/012718/wrong-timestamp-used/" rel="prev" title="错误的使用了时间戳">
-                错误的使用了时间戳 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

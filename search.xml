@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[拖动排序后台逻辑思考过程]]></title>
+    <url>%2F012718%2Fdrag-order-thinking%2F</url>
+    <content type="text"><![CDATA[需求实现类似这个的排序后台逻辑 思考 必要字段主键id，sequence 前端传递最后的值直接保存? 如果这个不是管理员使用的话，可能被注入错乱的相同排序序号，就无法正确的排序了。 时间比较紧急，前端需要去查找插件的使用方法等。 通常前端是实现页面效果和简单的控制，复杂的逻辑还是后端实现。 排序逻辑思考 最简单的情况 初始值如下 12345id - sequenceA - 1B - 2C - 3D - 4 现在将D-4和C-3调换位置 12345id - sequenceA - 1B - 2D - 4C - 3 想要保存这个结果必须修正C和D的sequence 结果如下 12345id - sequenceA - 1B - 2D - 3C - 4 那么这个过程中只是调换了C和D的sequence 最复杂的情况如下初始值如下 12345id - sequenceA - 1B - 2C - 3D - 4 现在将D-4拖动到顶层 12345id - sequenceD - 4A - 1B - 2C - 3 想要保存这个结果必须修正所有的sequence结果如下 12345id - sequenceD - 1A - 2B - 3C - 4 小结：这个排序其实就是把sequence重新分配，只要将所有的sequence重新排序，然后按照顺序分配即可。 解决方案 前端传递id数据库自关联修改 sequence 问题：数据库不会简单的根据传递的参数来排序 传递参数 D,A,B,C 期望: 12345id - sequenceD - 4A - 1B - 2C - 3 实际情况： 12345id - sequenceA - 1B - 2C - 3D - 4 通过查询查询资料这个需要写复杂的函数来解决，sql中不宜写复杂的函数，难以维护。 在java中排序然后批量更新(逐条更新会有并发问题的可能性)。 123456789101112131415161718public BaseResp&lt;Void&gt; sort(List&lt;DocumentSort&gt; sortList) &#123; List&lt;Integer&gt; sequenceList = new ArrayList&lt;&gt;(sortList.size()); sortList.forEach(d -&gt; sequenceList.add(d.getSequence())); Collections.sort(sequenceList); List&lt;DocumentCatalog&gt; needUpdate = new LinkedList&lt;&gt;(); for (int i = 0; i &lt; sortList.size(); i++) &#123; DocumentSort document = sortList.get(i); if(Objects.equals(document.getSequence(), sequenceList.get(i)))&#123; continue; &#125; DocumentCatalog catalog = new DocumentCatalog(); catalog.setId(document.getId()); catalog.setSequence(sequenceList.get(i)); needUpdate.add(catalog); &#125; if(0 != needUpdate.size()) &#123; documentCatalogMapper.batchUpdate(needUpdate);&#125; 通过测试这段代码还是存在问题： 当前端拖动的速度过快，数据sequence重复了！！！ java并发问题? 这个方法没有共享变量 Collections.sort(sequenceList)调用的是自身的排序，排查并发问题 这个是批量更新 核查了前端传递的数据，不存在传递相同的sequence 偶然发生debug不合适 详细日志，重现问题 初始值 id - sequence db-sequence A - 1 1 B - 2 2 C - 3 3 D - 4 4 将D移至第一个 id - sequence db-sequence D - 1 1 A - 2 2 B - 3 3 C - 4 4 将A和B调换 此时前端传递的sequence没变 id - sequence db-sequence D - 4 1 B - 2 3 A - 1 2 C - 3 4 重排后结果： id - sequence db-sequence D - 1 1 B - 2 3 A - 3 2 C - 4 4 增量更新就不会更新B的sequence最后结果数据库 id - sequence db-sequence D - 1 1 B - 2 3 A - 3 3 C - 4 4 此时出现了2个3 最终代码全量更新得到正确结果： public BaseResp&lt;Void&gt; sort(List&lt;DocumentSort&gt; sortList) { List&lt;Integer&gt; sequenceList = new ArrayList&lt;&gt;(sortList.size()); sortList.forEach(d -&gt; sequenceList.add(d.getSequence())); Collections.sort(sequenceList); List&lt;DocumentCatalog&gt; needUpdate = new LinkedList&lt;&gt;(); for (int i = 0; i &lt; sortList.size(); i++) { DocumentSort document = sortList.get(i); DocumentCatalog catalog = new DocumentCatalog(); catalog.setId(document.getId()); catalog.setSequence(sequenceList.get(i)); needUpdate.add(catalog); } if(0 != needUpdate.size()) { documentCatalogMapper.batchUpdate(needUpdate); }]]></content>
+      <categories>
+        <category>QA</category>
+      </categories>
+      <tags>
+        <tag>sort</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[错误的使用了时间戳]]></title>
     <url>%2F012718%2Fwrong-timestamp-used%2F</url>
     <content type="text"><![CDATA[症状如下： 用户上传的证件日期确定填写的2015-02-24，我们在后台查询了日志和数据库确定是这个值。 在用户员管理审核时显示2015-02-23 我们本地无法重现这个问题，显示的是2015-02-24 过程 管理员身在泰国曼谷（东七区）与我们不在一个时间区（东八区），于是我们将本地的时间调整为东七区，问题重现了。 发现日期是后端传递的时间戳，到前端调试下发现，时间戳转换成日期是2015-02-23 23:00 00,格式化只取日期就是显示的2015-02-23 解决 传递时间字符串 其他关联 需要国际化的系统设计 header传递lang语言标示 后端返回提示需要配置多语言，采用统一错误编码匹配。]]></content>
@@ -9,17 +20,6 @@
       </categories>
       <tags>
         <tag>timestamp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[拖动排序后台逻辑思考过程]]></title>
-    <url>%2F012718%2Fdrag-order-thinking%2F</url>
-    <content type="text"><![CDATA[需求实现类似这个的排序后台逻辑 思考 必要字段主键id，sequence 前端传递最后的值直接保存? 如果这个不是管理员使用的话，可能被注入错乱的相同排序序号，就无法正确的排序了。 时间比较紧急，前端需要去查找插件的使用方法等。 通常前端是实现页面效果和简单的控制，复杂的逻辑还是后端实现。 排序逻辑思考 最简单的情况 初始值如下 12345id - sequenceA - 1B - 2C - 3D - 4 现在将D-4和C-3调换位置 12345id - sequenceA - 1B - 2D - 4C - 3 想要保存这个结果必须修正C和D的sequence 结果如下 12345id - sequenceA - 1B - 2D - 3C - 4 那么这个过程中只是调换了C和D的sequence 最复杂的情况如下初始值如下 12345id - sequenceA - 1B - 2C - 3D - 4 现在将D-4拖动到顶层 12345id - sequenceD - 4A - 1B - 2C - 3 想要保存这个结果必须修正所有的sequence结果如下 12345id - sequenceD - 1A - 2B - 3C - 4 小结：这个排序其实就是把sequence重新分配，只要将所有的sequence重新排序，然后按照顺序分配即可。 解决方案 前端传递id数据库自关联修改 sequence 问题：数据库不会简单的根据传递的参数来排序 传递参数 D,A,B,C 期望: 12345id - sequenceD - 4A - 1B - 2C - 3 实际情况： 12345id - sequenceA - 1B - 2C - 3D - 4 通过查询查询资料这个需要写复杂的函数来解决，sql中不宜写复杂的函数，难以维护。 在java中排序然后批量更新(逐条更新会有并发问题的可能性)。 123456789101112131415161718public BaseResp&lt;Void&gt; sort(List&lt;DocumentSort&gt; sortList) &#123; List&lt;Integer&gt; sequenceList = new ArrayList&lt;&gt;(sortList.size()); sortList.forEach(d -&gt; sequenceList.add(d.getSequence())); Collections.sort(sequenceList); List&lt;DocumentCatalog&gt; needUpdate = new LinkedList&lt;&gt;(); for (int i = 0; i &lt; sortList.size(); i++) &#123; DocumentSort document = sortList.get(i); if(Objects.equals(document.getSequence(), sequenceList.get(i)))&#123; continue; &#125; DocumentCatalog catalog = new DocumentCatalog(); catalog.setId(document.getId()); catalog.setSequence(sequenceList.get(i)); needUpdate.add(catalog); &#125; if(0 != needUpdate.size()) &#123; documentCatalogMapper.batchUpdate(needUpdate);&#125; 通过测试这段代码还是存在问题： 当前端拖动的速度过快，数据sequence重复了！！！ java并发问题? 这个方法没有共享变量 Collections.sort(sequenceList)调用的是自身的排序，排查并发问题 这个是批量更新 核查了前端传递的数据，不存在传递相同的sequence 偶然发生debug不合适 详细日志，重现问题 初始值12345id - sequence db-sequenceA - 1 1B - 2 2C - 3 3D - 4 4 2. 将`D`移至第一个 12345678id - sequence db-sequenceD - 1 1A - 2 2B - 3 3C - 4 4``` 3. 将`A`和`B`调换 此时前端传递的`sequence`没变 id - sequence db-sequence D - 4 1 B - 2 3 A - 1 2 C - 3 4 124. 重排后结果： id - sequence db-sequence D - 1 1 B - 2 3 A - 3 2 C - 4 4 1235. 增量更新就不会更新`B`的`sequence`最后结果数据库 id - sequence db-sequence D - 1 1 B - 2 3 A - 3 3 C - 4 4 ``` 6. 此时出现了2个`3` 最终代码全量更新得到正确结果： public BaseResp&lt;Void&gt; sort(List&lt;DocumentSort&gt; sortList) { List&lt;Integer&gt; sequenceList = new ArrayList&lt;&gt;(sortList.size()); sortList.forEach(d -&gt; sequenceList.add(d.getSequence())); Collections.sort(sequenceList); List&lt;DocumentCatalog&gt; needUpdate = new LinkedList&lt;&gt;(); for (int i = 0; i &lt; sortList.size(); i++) { DocumentSort document = sortList.get(i); DocumentCatalog catalog = new DocumentCatalog(); catalog.setId(document.getId()); catalog.setSequence(sequenceList.get(i)); needUpdate.add(catalog); } if(0 != needUpdate.size()) { documentCatalogMapper.batchUpdate(needUpdate); }]]></content>
-      <categories>
-        <category>QA</category>
-      </categories>
-      <tags>
-        <tag>sort</tag>
       </tags>
   </entry>
   <entry>
@@ -97,14 +97,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[website]]></title>
-    <url>%2F120617%2Fwebsite%2F</url>
-    <content type="text"><![CDATA[python自动上色 google翻译 自动部署 自动部署帮助文档 (http://notes.iissnan.com/2016/publishing-github-pages-with-travis-ci/) 阿里图标库 (http://588ku.com) (http://www.iconpng.com) 小图标 进度条&amp;勋章 图标生成 在线编辑 go语言学习 tour]]></content>
+    <title><![CDATA[java生成md5]]></title>
+    <url>%2F120617%2Fjava-generate-md5%2F</url>
+    <content type="text"><![CDATA[1234567891011121314151617181920212223242526public static String md5(String source)&#123; try &#123; MessageDigest md5 = MessageDigest.getInstance("MD5"); return bytesConvertToHexString(md5.digest(source.getBytes())); &#125;catch (Exception e)&#123; &#125; return null;&#125;/** * 把字节数组转化成字符串返回 * @param bytes * @return */public static String bytesConvertToHexString(byte [] bytes) &#123; StringBuffer sb = new StringBuffer(); for (byte aByte : bytes) &#123; String s= Integer.toHexString(0xff &amp; aByte); if(s.length()==1)&#123; sb.append("0"+s); &#125;else&#123; sb.append(s); &#125; &#125; return sb.toString();&#125;]]></content>
       <categories>
-        <category>其他</category>
+        <category>Gists</category>
       </categories>
       <tags>
-        <tag>其他</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -119,14 +119,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[java生成md5]]></title>
-    <url>%2F120617%2Fjava-generate-md5%2F</url>
-    <content type="text"><![CDATA[1234567891011121314151617181920212223242526public static String md5(String source)&#123; try &#123; MessageDigest md5 = MessageDigest.getInstance("MD5"); return bytesConvertToHexString(md5.digest(source.getBytes())); &#125;catch (Exception e)&#123; &#125; return null;&#125;/** * 把字节数组转化成字符串返回 * @param bytes * @return */public static String bytesConvertToHexString(byte [] bytes) &#123; StringBuffer sb = new StringBuffer(); for (byte aByte : bytes) &#123; String s= Integer.toHexString(0xff &amp; aByte); if(s.length()==1)&#123; sb.append("0"+s); &#125;else&#123; sb.append(s); &#125; &#125; return sb.toString();&#125;]]></content>
+    <title><![CDATA[website]]></title>
+    <url>%2F120617%2Fwebsite%2F</url>
+    <content type="text"><![CDATA[python自动上色 google翻译 自动部署 自动部署帮助文档 (http://notes.iissnan.com/2016/publishing-github-pages-with-travis-ci/) 阿里图标库 (http://588ku.com) (http://www.iconpng.com) 小图标 进度条&amp;勋章 图标生成 在线编辑 go语言学习 tour]]></content>
       <categories>
-        <category>Gists</category>
+        <category>其他</category>
       </categories>
       <tags>
-        <tag>java</tag>
+        <tag>其他</tag>
       </tags>
   </entry>
   <entry>
