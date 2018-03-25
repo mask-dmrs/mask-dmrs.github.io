@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.6" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/dmrs_red_t.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/dmrs_red_t.png?v=6.0.6">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.6" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.6',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ali-api-util">
+<meta property="og:url" content="https://dmrs.me/12062017/ali-api-util/index.html">
+<meta property="og:site_name" content="Mask&#39;s Site">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-25T13:41:06.601Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ali-api-util">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+
+
+
+
+
+
+  <link rel="canonical" href="https://dmrs.me/12062017/ali-api-util/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ali-api-util | Mask's Site</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mask's Site</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">失败不可怕,可怕的是我本可以.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dmrs.me/12062017/ali-api-util/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mask Leo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://static.zuul.top/dmrs-me/sys/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mask's Site">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">ali-api-util</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-06T23:45:02+08:00">2017-12-06</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Gists/" itemprop="url" rel="index"><span itemprop="name">Gists</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@NotThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AliApiClientUtil</span> <span class="keyword">implements</span> <span class="title">InitializingBean</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;aliapi.appKey:no_config&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String appKey;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;aliapi.appSecret:no_config&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String appSecret;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;aliapi.enable:false&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> enable;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> AliApiClient asyncClient;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterPropertiesSet</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (enable &amp;&amp; (Constant.DEF_CONFIG.equals(appKey) || Constant.DEF_CONFIG.equals(appSecret))) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(String.format(<span class="string">"阿里云第三方API初始化,缺失参数appKey:&#123;0&#125;,appSecret&#123;1&#125;"</span>, <span class="keyword">new</span> Object[]&#123;appKey, appSecret&#125;));</span><br><span class="line">        &#125;</span><br><span class="line">        asyncClient = AliApiClient.newBuilder()</span><br><span class="line">                .appKey(appKey)</span><br><span class="line">                .appSecret(appSecret)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> <span class="keyword">extends</span> <span class="title">BaseApiClientBuilder</span>&lt;<span class="title">Builder</span>, <span class="title">AliApiClient</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> AliApiClient <span class="title">build</span><span class="params">(BuilderParams params)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> AliApiClient(params);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">AliApiClient</span> <span class="keyword">extends</span> <span class="title">BaseApiClient</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="title">AliApiClient</span><span class="params">(BuilderParams builderParams)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>(builderParams);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Builder <span class="title">newBuilder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Builder();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> AliApiClient <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> getApiClassInstance(AliApiClient.class);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">asyncInvoke0</span><span class="params">(ApiRequest apiRequest, ApiCallBack callBack)</span> </span>&#123;</span><br><span class="line">            asyncInvoke(apiRequest, callBack);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> ApiResponse <span class="title">syncInvoke0</span><span class="params">(ApiRequest apiRequest)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> syncInvoke(apiRequest);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *&#123;</span></span><br><span class="line"><span class="comment">     *"resp":&#123;</span></span><br><span class="line"><span class="comment">     *  "code":0,</span></span><br><span class="line"><span class="comment">     *  "desc":"OK"</span></span><br><span class="line"><span class="comment">     *  &#125; ,</span></span><br><span class="line"><span class="comment">     *  "data":&#123;&#125;,</span></span><br><span class="line"><span class="comment">     * &#125;</span></span><br><span class="line"><span class="comment">     * 银行卡二、三、四元素实名认证</span></span><br><span class="line"><span class="comment">     * https://market.aliyun.com/products/57000002/cmapi014429.html?spm=5176.2020520132.101.5.2lTTNI#sku=yuncode842900008</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> AliHttpStatusEm</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> com.dotnar.usc.common.util.aliapi.bankcardverifi.BankCardVerifiStatusEm</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> bankCardVerifiVo</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ApiResponse <span class="title">syncBankCardVerifi</span><span class="params">(BankCardVerifiVo bankCardVerifiVo)</span> </span>&#123;</span><br><span class="line">        ApiRequest apiRequest = <span class="keyword">new</span> ApiRequest(Scheme.HTTP, Method.GET, Constant.BANK_CARD_VERIFI_HOST, Constant.BANK_CARD_VERIFI_API_PATH);</span><br><span class="line">        apiRequest.addParam(<span class="string">"acct_name"</span>, bankCardVerifiVo.getAcctName(), ParamPosition.QUERY, <span class="keyword">false</span>);</span><br><span class="line">        apiRequest.addParam(<span class="string">"acct_pan"</span>, bankCardVerifiVo.getAcctPan(), ParamPosition.QUERY, <span class="keyword">true</span>);</span><br><span class="line">        apiRequest.addParam(<span class="string">"cert_id"</span>, bankCardVerifiVo.getCertId(), ParamPosition.QUERY, <span class="keyword">false</span>);</span><br><span class="line">        apiRequest.addParam(<span class="string">"phone_num"</span>, bankCardVerifiVo.getPhoneNum(), ParamPosition.QUERY, <span class="keyword">false</span>);</span><br><span class="line">        <span class="keyword">return</span> asyncClient.syncInvoke0(apiRequest);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &#123;</span></span><br><span class="line"><span class="comment">     * "resp": &#123;</span></span><br><span class="line"><span class="comment">     *      "code": 0,</span></span><br><span class="line"><span class="comment">     *      "desc": "匹配"</span></span><br><span class="line"><span class="comment">     * &#125;,</span></span><br><span class="line"><span class="comment">     * "data": &#123;</span></span><br><span class="line"><span class="comment">     *    "photo": "/9j/4AAQSkZJRgABAgAAAQAzb0a9jtkMbHG/o3+19P89K28x...",</span></span><br><span class="line"><span class="comment">     *    "address": "四川省雅安地区荥经县",</span></span><br><span class="line"><span class="comment">     *    "sex": "M",</span></span><br><span class="line"><span class="comment">     *    "birthday": "1989-9-28"</span></span><br><span class="line"><span class="comment">     *   &#125;</span></span><br><span class="line"><span class="comment">     * &#125;</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 身份证实名认证--返照片</span></span><br><span class="line"><span class="comment">     * https://market.aliyun.com/products/57000002/cmapi015194.html?spm=5176.2020520132.101.10.2lTTNI#sku=yuncode919400000</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> idPhotoVo</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> AliHttpStatusEm</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> com.dotnar.usc.common.util.aliapi.idphoto.IdPhotoStatusEm</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ApiResponse <span class="title">syncIdphoto</span><span class="params">(IdPhotoVo idPhotoVo)</span> </span>&#123;</span><br><span class="line">        ApiRequest apiRequest = <span class="keyword">new</span> ApiRequest(Scheme.HTTP, Method.GET, Constant.ID_PHOTO_HOST, Constant.ID_PHOTO_API_PATH);</span><br><span class="line">        apiRequest.addParam(<span class="string">"cardno"</span>, idPhotoVo.getCardno(), ParamPosition.QUERY, <span class="keyword">true</span>);</span><br><span class="line">        apiRequest.addParam(<span class="string">"name"</span>, idPhotoVo.getName(), ParamPosition.QUERY, <span class="keyword">true</span>);</span><br><span class="line">        <span class="keyword">return</span> asyncClient.syncInvoke0(apiRequest);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>常见的错误<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2017/12/5 16:42</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * https://help.aliyun.com/document_detail/43906.html</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> AliHttpStatusEm &#123;</span><br><span class="line"></span><br><span class="line">    OK(<span class="string">"OK"</span>, <span class="number">200</span>, <span class="string">"成功"</span>),</span><br><span class="line"></span><br><span class="line">    THROTTLED_BY_USER_FLOW_CONTROL(<span class="string">"Throttled by USER Flow Control"</span>, <span class="number">403</span>, <span class="string">"因用户流控被限制"</span>),</span><br><span class="line"></span><br><span class="line">    THROTTLED_BY_APP_FLOW_CONTROL(<span class="string">"Throttled by APP Flow Control"</span>, <span class="number">403</span>, <span class="string">"因APP流控被限制"</span>),</span><br><span class="line"></span><br><span class="line">    THROTTLED_BY_API_FLOW_CONTROL(<span class="string">"Throttled by API Flow Control"</span>, <span class="number">403</span>, <span class="string">"因 API 流控被限制"</span>),</span><br><span class="line"></span><br><span class="line">    THROTTLED_BY_DOMAIN_FLOW_CONTROL(<span class="string">"Throttled by DOMAIN Flow Control"</span>, <span class="number">403</span>, <span class="string">"因二级域名流控被限制，或因分组流控被限制"</span>),</span><br><span class="line"></span><br><span class="line">    QUOTA_EXHAUSTED(<span class="string">"Quota Exhausted"</span>, <span class="number">403</span>, <span class="string">"调用次数已用完"</span>),</span><br><span class="line"></span><br><span class="line">    QUOTA_EXPIRED(<span class="string">"Quota Expired"</span>, <span class="number">403</span>, <span class="string">"购买次数已过期"</span>),</span><br><span class="line"></span><br><span class="line">    USER_ARREARS(<span class="string">"User Arrears"</span>, <span class="number">403</span>, <span class="string">"用户已欠费"</span>),</span><br><span class="line"></span><br><span class="line">    INVALID_ACCESS_KEY_ID_NOT_FOUND(<span class="string">"InvalidAccessKeyId.NotFound"</span>, <span class="number">404</span>, <span class="string">"AccessKeyId 找不到"</span>),</span><br><span class="line"></span><br><span class="line">    INVALID_ACCESS_KEY_ID_INACTIVE(<span class="string">"InvalidAccessKeyId.Inactive"</span>, <span class="number">400</span>, <span class="string">"AccessKeyId 被禁用。"</span>),</span><br><span class="line"></span><br><span class="line">    INVALID_TIME_STAMP_FORMAT(<span class="string">"InvalidTimeStamp.Format"</span>, <span class="number">400</span>, <span class="string">"时间戳格式不对( Date 和 Timestamp)。"</span>),</span><br><span class="line"></span><br><span class="line">    INVALID_TIME_STAMP_EXPIRED(<span class="string">"InvalidTimeStamp.Expired"</span>, <span class="number">400</span>, <span class="string">"用户时间和服务器时间超过15分钟。"</span>),</span><br><span class="line"></span><br><span class="line">    INVALID_SIGNATURE_METHOD(<span class="string">"InvalidSignatureMethod"</span>, <span class="number">400</span>, <span class="string">"签名方法不支持。"</span>),</span><br><span class="line"></span><br><span class="line">    SIGNATURE_DOES_NOT_MATCH(<span class="string">"SignatureDoesNotMatch"</span>, <span class="number">400</span>, <span class="string">"签名不通过。"</span>),</span><br><span class="line"></span><br><span class="line">    THROTTLING_USER(<span class="string">"Throttling.User"</span>, <span class="number">400</span>, <span class="string">"用户调用频率超限。"</span>),</span><br><span class="line"></span><br><span class="line">    THROTTLING_API(<span class="string">"Throttling.API"</span>, <span class="number">400</span>, <span class="string">"API 访问频率超限。"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 错误码</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String code;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * http 状态码</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> statusCode;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 中文描述</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String desc;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Map&lt;String, AliHttpStatusEm&gt; ID_MAP = Arrays.stream(AliHttpStatusEm.values())</span><br><span class="line">            .collect(Collectors.toMap(AliHttpStatusEm::getCode, Function.identity()));</span><br><span class="line"></span><br><span class="line">    AliHttpStatusEm(String code, <span class="keyword">int</span> statusCode, String desc) &#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">        <span class="keyword">this</span>.statusCode = statusCode;</span><br><span class="line">        <span class="keyword">this</span>.desc = desc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getStatusCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> statusCode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDesc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> desc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> AliHttpStatusEm <span class="title">getAliHttpStatusEmByStatusCode</span><span class="params">(String code)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ID_MAP.get(code);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>银行卡验证错误状态<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 银行卡验证状态码</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2017/12/5 17:31</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * https://market.aliyun.com/products/57000002/cmapi014429.html?spm=5176.2020520132.101.5.2lTTNI#sku=yuncode842900008</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> BankCardVerifiStatusEm &#123;</span><br><span class="line"></span><br><span class="line">    OK((<span class="keyword">short</span>) <span class="number">0</span>, <span class="string">"OK"</span>),</span><br><span class="line"></span><br><span class="line">    CARD_IS_FORFEITED((<span class="keyword">short</span>) <span class="number">4</span>, <span class="string">"此卡被没收，请于发卡方联系"</span>),</span><br><span class="line"></span><br><span class="line">    CARDHOLDER_AUTHENTICATION_FAILED((<span class="keyword">short</span>) <span class="number">5</span>, <span class="string">"持卡人认证失败"</span>),</span><br><span class="line"></span><br><span class="line">    INVALID_CARD_NUMBER((<span class="keyword">short</span>) <span class="number">14</span>, <span class="string">"无效卡号"</span>),</span><br><span class="line"></span><br><span class="line">    CARD_DOES_NOT_CORRESPOND_ISSUER((<span class="keyword">short</span>) <span class="number">15</span>, <span class="string">"此卡无对应发卡方"</span>),</span><br><span class="line"></span><br><span class="line">    CARD_IS_NOT_INITIALIZED_OR_SLEEPS((<span class="keyword">short</span>) <span class="number">21</span>, <span class="string">"该卡未初始化或睡眠卡"</span>),</span><br><span class="line"></span><br><span class="line">    CHEAT_TUNKA((<span class="keyword">short</span>) <span class="number">34</span>, <span class="string">"作弊卡，吞卡"</span>),</span><br><span class="line"></span><br><span class="line">    ISSUER_DOES_NOT_SUPPORT_TRANSACTION((<span class="keyword">short</span>) <span class="number">40</span>, <span class="string">"发卡方不支持的交易"</span>),</span><br><span class="line"></span><br><span class="line">    CARD_HAS__REPORTED((<span class="keyword">short</span>) <span class="number">41</span>, <span class="string">"此卡已经挂失"</span>),</span><br><span class="line"></span><br><span class="line">    CARD_IS_FORFEITED_2((<span class="keyword">short</span>) <span class="number">43</span>, <span class="string">"此卡被没收"</span>),</span><br><span class="line"></span><br><span class="line">    CARD_HAS_EXPIRED((<span class="keyword">short</span>) <span class="number">54</span>, <span class="string">"该卡已过期"</span>),</span><br><span class="line"></span><br><span class="line">    CARD_ISSUER_DOES_NOT_ALLOW_THIS_TRANSACTION((<span class="keyword">short</span>) <span class="number">57</span>, <span class="string">"发卡方不允许此交易"</span>),</span><br><span class="line"></span><br><span class="line">    RESTRICTED_CARD((<span class="keyword">short</span>) <span class="number">62</span>, <span class="string">"受限制的卡"</span>),</span><br><span class="line"></span><br><span class="line">    WRONG_NUMBER_OF_PASSWORDS((<span class="keyword">short</span>) <span class="number">75</span>, <span class="string">"密码错误次数超限"</span>),</span><br><span class="line"></span><br><span class="line">    FAILED((<span class="keyword">short</span>) <span class="number">96</span>, <span class="string">"交易失败，请稍后重试"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">short</span> code;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String desc;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Map&lt;Short, BankCardVerifiStatusEm&gt; ID_MAP = Arrays.stream(BankCardVerifiStatusEm.values())</span><br><span class="line">            .collect(Collectors.toMap(BankCardVerifiStatusEm::getCode, Function.identity()));</span><br><span class="line"></span><br><span class="line">    BankCardVerifiStatusEm(<span class="keyword">short</span> code, String desc) &#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">        <span class="keyword">this</span>.desc = desc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">short</span> <span class="title">getCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDesc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> desc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BankCardVerifiStatusEm <span class="title">getBankCardVerifiStatusEmByCode</span><span class="params">(<span class="keyword">short</span> code)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ID_MAP.get(code);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>获取 身份证照片<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2017/12/5 19:05</span></span><br><span class="line"><span class="comment"> * https://market.aliyun.com/products/57000002/cmapi015194.html?spm=5176.2020520132.101.10.2lTTNI#sku=yuncode919400000</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> IdPhotoStatusEm &#123;</span><br><span class="line"></span><br><span class="line">    OK((<span class="keyword">short</span>) <span class="number">0</span>, <span class="string">"匹配"</span>),</span><br><span class="line"></span><br><span class="line">    MISMATCH((<span class="keyword">short</span>) <span class="number">5</span>, <span class="string">"不匹配"</span>),</span><br><span class="line"></span><br><span class="line">    NOT_EXIST((<span class="keyword">short</span>) <span class="number">14</span>, <span class="string">"无此身份证号码"</span>),</span><br><span class="line"></span><br><span class="line">    FAILED((<span class="keyword">short</span>) <span class="number">96</span>, <span class="string">"交易失败，请稍后重试"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">short</span> code;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String desc;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Map&lt;Short, IdPhotoStatusEm&gt; ID_MAP = Arrays.stream(IdPhotoStatusEm.values())</span><br><span class="line">            .collect(Collectors.toMap(IdPhotoStatusEm::getCode, Function.identity()));</span><br><span class="line"></span><br><span class="line">    IdPhotoStatusEm(<span class="keyword">short</span> code, String desc) &#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">        <span class="keyword">this</span>.desc = desc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">short</span> <span class="title">getCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDesc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> desc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IdPhotoStatusEm <span class="title">getIdPhotoStatusEmByCode</span><span class="params">(<span class="keyword">short</span> code)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ID_MAP.get(code);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果您觉得我的文章对您有帮助,请随意打赏!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://static.zuul.top/dmrs-me/sys/WeChat-pay.png" alt="Mask Leo 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://static.zuul.top/dmrs-me/sys/Alipay-pay.png" alt="Mask Leo 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Mask Leo</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://dmrs.me/12062017/ali-api-util/" title="ali-api-util">https://dmrs.me/12062017/ali-api-util/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/12062017/website/" rel="next" title="website">
+                <i class="fa fa-chevron-left"></i> website
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/12062017/java-generate-md5/" rel="prev" title="java生成md5">
+                java生成md5 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://static.zuul.top/dmrs-me/sys/head.jpg"
+                alt="Mask Leo" />
+            
+              <p class="site-author-name" itemprop="name">Mask Leo</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://about.me/maskleo?from=dmrs.me" title="关于我" target="_blank">关于我</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://fund.toolbox.xin/?from=dmrs.me" title="基金工具" target="_blank">基金工具</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mask Leo</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" rel="external nofollow" href="https://pages.coding.me"><b>Coding Pages</b></a></div>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.6"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.6"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.6"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.6"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.6"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+        <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitment({
+            id: window.location.pathname,
+            owner: 'maskleo',
+            repo: 'gitment-dmrs',
+            
+            oauth: {
+            
+            
+                client_secret: '21da81e34eb6266db9bef061f616fdba8f8bb5e9',
+            
+                client_id: '03fe457f0f91d7d6e9a6'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "default";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "default";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
