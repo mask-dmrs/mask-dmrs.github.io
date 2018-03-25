@@ -5,7 +5,7 @@
 # Site
 title: Mask's Site
 subtitle: 失败不可怕,可怕的是我本可以.
-description: mask,dmrs,java,blog,next,hexo
+#description: mask,dmrs,java,blog,next,hexo
 author: Mask Leo
 language: zh-CN
 timezone:
@@ -83,6 +83,7 @@ tag_map:
   设计: design
   译文: translate
   转载: reprint
+  排版: composing
   
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
