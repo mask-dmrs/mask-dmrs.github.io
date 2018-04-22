@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.6" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/dmrs_red_t.png?v=6.0.6">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/dmrs_red_t.png?v=6.0.6">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.6" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.6',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="回顾回顾下最开始使用 SpringWeb 的时候,那时候到处是 spring-xxx.xml。最为熟悉的不过于 web.xml 对 SpringWeb 启动的配置如下: 123456789&amp;lt;servlet&amp;gt;  &amp;lt;servlet-name&amp;gt;chapter2&amp;lt;/servlet-name&amp;gt;  &amp;lt;servlet-class&amp;gt;org.springframewo">
+<meta name="keywords" content="FAQ,corn,spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring不需要web.xml可以被web服务器自动扫描到">
+<meta property="og:url" content="https://maskleo.com/042218/spring-doesnot-require-webxml-can-be-automatically-scanned-by-web-server/index.html">
+<meta property="og:site_name" content="Mask&#39;s Site">
+<meta property="og:description" content="回顾回顾下最开始使用 SpringWeb 的时候,那时候到处是 spring-xxx.xml。最为熟悉的不过于 web.xml 对 SpringWeb 启动的配置如下: 123456789&amp;lt;servlet&amp;gt;  &amp;lt;servlet-name&amp;gt;chapter2&amp;lt;/servlet-name&amp;gt;  &amp;lt;servlet-class&amp;gt;org.springframewo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-22T08:45:29.946Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="spring不需要web.xml可以被web服务器自动扫描到">
+<meta name="twitter:description" content="回顾回顾下最开始使用 SpringWeb 的时候,那时候到处是 spring-xxx.xml。最为熟悉的不过于 web.xml 对 SpringWeb 启动的配置如下: 123456789&amp;lt;servlet&amp;gt;  &amp;lt;servlet-name&amp;gt;chapter2&amp;lt;/servlet-name&amp;gt;  &amp;lt;servlet-class&amp;gt;org.springframewo">
+
+
+
+
+
+
+  <link rel="canonical" href="https://maskleo.com/042218/spring-doesnot-require-webxml-can-be-automatically-scanned-by-web-server/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>spring不需要web.xml可以被web服务器自动扫描到 | Mask's Site</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mask's Site</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">失败不可怕,可怕的是我本可以.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://maskleo.com/042218/spring-doesnot-require-webxml-can-be-automatically-scanned-by-web-server/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mask Leo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://static.zuul.top/dmrs-me/sys/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mask's Site">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">spring不需要web.xml可以被web服务器自动扫描到</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T10:12:20+08:00">2018-04-22</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/QA/" itemprop="url" rel="index"><span itemprop="name">QA</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>回顾下最开始使用 <code>SpringWeb</code> 的时候,那时候到处是 <code>spring-xxx.xml</code>。最为熟悉的不过于 <code>web.xml</code> 对 <code>SpringWeb</code> 启动的配置如下:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>chapter2<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:spring-config.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span>      </span><br><span class="line">  <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>listener</code> 下的 <code>ContextLoaderListener</code> 是一种引入方式，默认读取 <code>/WEB-INF/applicationContext.xml</code> 实际上 <code>ContextLoaderListener</code> 实现了 <code>javax.servlet.ServletContextListener</code>,让 <code>web</code> 服务扫描到。<code>ContextLoaderListener</code> 的  <code>contextInitialized</code> 方法就会被调用然后启动 读取 <code>Spring</code> 相关的文件,解析加载相关的内容。</li>
+<li>若是 <code>spring-web</code> 项目，<code>DispatcherServlet</code> 也是一种引入方式，默认读取 <code>/WEB-INF/${servlet-name}-servlet.xml</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> javax.servlet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.EventListener;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Implementations of this interface receive notifications about changes to the</span></span><br><span class="line"><span class="comment"> * servlet context of the web application they are part of. To receive</span></span><br><span class="line"><span class="comment"> * notification events, the implementation class must be configured in the</span></span><br><span class="line"><span class="comment"> * deployment descriptor for the web application.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> ServletContextEvent</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> v 2.3</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ServletContextListener</span> <span class="keyword">extends</span> <span class="title">EventListener</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     ** Notification that the web application initialization process is starting.</span></span><br><span class="line"><span class="comment">     * All ServletContextListeners are notified of context initialization before</span></span><br><span class="line"><span class="comment">     * any filter or servlet in the web application is initialized.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> sce Information about the ServletContext that was initialized</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextInitialized</span><span class="params">(ServletContextEvent sce)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     ** Notification that the servlet context is about to be shut down. All</span></span><br><span class="line"><span class="comment">     * servlets and filters have been destroy()ed before any</span></span><br><span class="line"><span class="comment">     * ServletContextListeners are notified of context destruction.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> sce Information about the ServletContext that was destroyed</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextDestroyed</span><span class="params">(ServletContextEvent sce)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>后面发现不使用 <code>web.xml</code> 也能够加载 <code>Spring</code>,并且没法发现显示调用 <code>Spring</code> 相关的启动类。</p>
+<p><code>org.springframework.web.servlet.support.AbstractDispatcherServletInitializer</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Base class for &#123;<span class="doctag">@link</span> org.springframework.web.WebApplicationInitializer&#125;</span></span><br><span class="line"><span class="comment"> * implementations that register a &#123;<span class="doctag">@link</span> DispatcherServlet&#125; in the servlet context.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;Concrete implementations are required to implement</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> #createServletApplicationContext()&#125;, as well as &#123;<span class="doctag">@link</span> #getServletMappings()&#125;,</span></span><br><span class="line"><span class="comment"> * both of which get invoked from &#123;<span class="doctag">@link</span> #registerDispatcherServlet(ServletContext)&#125;.</span></span><br><span class="line"><span class="comment"> * Further customization can be achieved by overriding</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> #customizeRegistration(ServletRegistration.Dynamic)&#125;.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;Because this class extends from &#123;<span class="doctag">@link</span> AbstractContextLoaderInitializer&#125;, concrete</span></span><br><span class="line"><span class="comment"> * implementations are also required to implement &#123;<span class="doctag">@link</span> #createRootApplicationContext()&#125;</span></span><br><span class="line"><span class="comment"> * to set up a parent "&lt;strong&gt;root&lt;/strong&gt;" application context. If a root context is</span></span><br><span class="line"><span class="comment"> * not desired, implementations can simply return &#123;<span class="doctag">@code</span> null&#125; in the</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> createRootApplicationContext()&#125; implementation.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractDispatcherServletInitializer</span> <span class="keyword">extends</span> <span class="title">AbstractContextLoaderInitializer</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+<p>看注释就知道 这个类的功能和 <code>ContextLoaderListener</code> 的功能类似，用来创建上下文。</p>
+<p>通过调试我们找到了原始的加载核心(<code>tomcat</code> 内核代码)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ServletContainerInitializers (SCIs) are registered via an entry in the</span></span><br><span class="line"><span class="comment"> * file META-INF/services/javax.servlet.ServletContainerInitializer that must be</span></span><br><span class="line"><span class="comment"> * included in the JAR file that contains the SCI implementation.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * SCI processing is performed regardless of the setting of metadata-complete.</span></span><br><span class="line"><span class="comment"> * SCI processing can be controlled per JAR file via fragment ordering. If an</span></span><br><span class="line"><span class="comment"> * absolute ordering is defined, the only those JARs included in the ordering</span></span><br><span class="line"><span class="comment"> * will be processed for SCIs. To disable SCI processing completely, an empty</span></span><br><span class="line"><span class="comment"> * absolute ordering may be defined.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * SCIs register an interest in annotations (class, method or field) and/or</span></span><br><span class="line"><span class="comment"> * types via the &#123;<span class="doctag">@link</span> javax.servlet.annotation.HandlesTypes&#125; annotation which</span></span><br><span class="line"><span class="comment"> * is added to the class.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> Servlet 3.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ServletContainerInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">     <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Receives notification during startup of a web application of the classes</span></span><br><span class="line"><span class="comment">     * within the web application that matched the criteria defined via the</span></span><br><span class="line"><span class="comment">     * &#123;<span class="doctag">@link</span> javax.servlet.annotation.HandlesTypes&#125; annotation.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> c     The (possibly null) set of classes that met the specified</span></span><br><span class="line"><span class="comment">     *              criteria</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> ctx   The ServletContext of the web application in which the</span></span><br><span class="line"><span class="comment">     *              classes were discovered</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> ServletException If an error occurs</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">     <span class="function"><span class="keyword">void</span> <span class="title">onStartup</span><span class="params">(Set&lt;Class&lt;?&gt;&gt; c, ServletContext ctx)</span> <span class="keyword">throws</span> ServletException</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>从注释看我们知道是要去加载 <code>jar</code> 下面的 <code>META-INF/services/javax.servlet.ServletContainerInitializer</code> 文件，让我们打开 <code>spring-web-x.x.x.jar</code> 能找到这个文件,里面的内容是 <code>org.springframework.web.SpringServletContainerInitializer</code> 也就是 <code>springweb</code> 的初始加载核心。<code>tomcat</code> 启动回去扫描相关的类，启动 <code>SpringWeb</code>。</p>
+<h2 id="扩展-文件加载"><a href="#扩展-文件加载" class="headerlink" title="扩展: 文件加载"></a>扩展: 文件加载</h2><p>文件结构</p>
+<p><code>src/main/java/Test.java</code><br><code>src/resource/META-INF/services/javax.servlet.ServletContainerInitializer</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">import</span> java.net.URL;</span><br><span class="line"> <span class="keyword">import</span> java.util.Enumeration;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ClassLoader classLoader = Test.class.getClassLoader();</span><br><span class="line">        URL url = classLoader.getResource(<span class="string">"META-INF/services/javax.servlet.ServletContainerInitializer"</span>);</span><br><span class="line">        System.out.println(url);</span><br><span class="line">        System.out.println(<span class="string">"=================================="</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Enumeration&lt;URL&gt; enumeration = classLoader.getResources(<span class="string">"META-INF/services/javax.servlet.ServletContainerInitializer"</span>);</span><br><span class="line">            <span class="keyword">while</span> (enumeration.hasMoreElements()) &#123;</span><br><span class="line">                System.out.println(enumeration.nextElement());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>打印结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">file:/E:/comp_code_workspace/demo/target/classes/META-INF/services/javax.servlet.ServletContainerInitializer</span><br><span class="line">==================================</span><br><span class="line">file:/E:/comp_code_workspace/demo/target/classes/META-INF/services/javax.servlet.ServletContainerInitializer</span><br><span class="line">jar:file:/D:/mvn_repository/org/apache/tomcat/embed/tomcat-embed-websocket/8.5.15/tomcat-embed-websocket-8.5.15.jar!/META-INF/services/javax.servlet.ServletContainerInitializer</span><br><span class="line">jar:file:/D:/mvn_repository/org/springframework/spring-web/4.3.9.RELEASE/spring-web-4.3.9.RELEASE.jar!/META-INF/services/javax.servlet.ServletContainerInitializer</span><br><span class="line">jar:file:/D:/mvn_repository/ch/qos/logback/logback-classic/1.1.11/logback-classic-1.1.11.jar!/META-INF/services/javax.servlet.ServletContainerInitializer</span><br></pre></td></tr></table></figure>
+<p>这个设计的好处出非常多，常用的是：某个框架提供一个约定的配置形式，有利于开发者扩展。目前 <code>Spring</code> 相关插件就是依据这个而来，最常见的是 <code>META-INF/spring.handlers</code> 和 <code>META-INF/spring.schemas</code>(虽然这个是比较老的 <code>xml</code>解析相关)。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果您觉得我的文章对您有帮助,请随意打赏!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://static.zuul.top/dmrs-me/sys/WeChat-pay.png" alt="Mask Leo 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://static.zuul.top/dmrs-me/sys/Alipay-pay.png" alt="Mask Leo 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Mask Leo</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://maskleo.com/042218/spring-doesnot-require-webxml-can-be-automatically-scanned-by-web-server/" title="spring不需要web.xml可以被web服务器自动扫描到">https://maskleo.com/042218/spring-doesnot-require-webxml-can-be-automatically-scanned-by-web-server/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/FAQ/" rel="tag"># FAQ</a>
+          
+            <a href="/tags/corn/" rel="tag"># corn</a>
+          
+            <a href="/tags/spring/" rel="tag"># spring</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/032518/how-to-ask-questions-the-smart-way/" rel="next" title="提问的智慧">
+                <i class="fa fa-chevron-left"></i> 提问的智慧
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/042218/perform-every-90-seconds/" rel="prev" title="90秒执行一次的corn">
+                90秒执行一次的corn <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://static.zuul.top/dmrs-me/sys/head.jpg"
+                alt="Mask Leo" />
+            
+              <p class="site-author-name" itemprop="name">Mask Leo</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://about.me/maskleo?from=dmrs.me" title="关于我" target="_blank">关于我</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://fund.toolbox.xin/?from=dmrs.me" title="基金工具" target="_blank">基金工具</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#回顾"><span class="nav-number">1.</span> <span class="nav-text">回顾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">2.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展-文件加载"><span class="nav-number">3.</span> <span class="nav-text">扩展: 文件加载</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mask Leo</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" rel="external nofollow" href="https://pages.coding.me"><b>Coding Pages</b></a></div>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.6"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.6"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.6"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.6"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.6"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+        <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitment({
+            id: window.location.pathname,
+            owner: 'maskleo',
+            repo: 'gitment-dmrs',
+            
+            oauth: {
+            
+            
+                client_secret: '21da81e34eb6266db9bef061f616fdba8f8bb5e9',
+            
+                client_id: '03fe457f0f91d7d6e9a6'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "default";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "default";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
